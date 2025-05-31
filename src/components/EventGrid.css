@@ -1,3 +1,4 @@
+/* ---------- Grid View Section (Past Events) ---------- */
 .event-section {
   padding: 2rem;
 }
@@ -17,10 +18,13 @@
   text-align: left;
   max-width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 0 0 auto;
+  width: 280px;
 }
+
 .event-card:hover {
-  transform: scale(1.05); /* 👈 zoom in */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* optional: stronger shadow */
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .event-image {
@@ -43,6 +47,7 @@
   font-family: Poppins;
 }
 
+/* ---------- View All Button ---------- */
 .view-all-wrapper {
   display: flex;
   justify-content: center;
@@ -65,4 +70,66 @@
   background-color: #000;
   border: 1px solid #fff;
   color: #fff;
+}
+
+/* ---------- Slider Section (Upcoming Events) ---------- */
+.slider-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.slider-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.event-slider {
+  display: flex;
+  overflow: hidden;
+  gap: 1rem;
+  scroll-behavior: smooth;
+  width: 900px; /* fit exactly 3 cards (280 * 3 + gap) */
+  scrollbar-width: none;
+}
+
+.event-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Arrows ---------- */
+.slider-arrow {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: black;
+  z-index: 2;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.slider-arrow:hover {
+  transform: scale(1.2);
+  color: #b4511f;
+}
+
+.slider-arrow.left {
+  position: absolute;
+  left: 10px;
+}
+
+.slider-arrow.right {
+  position: absolute;
+  right: 10px;
 }

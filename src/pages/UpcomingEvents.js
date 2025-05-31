@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '../components/SearchBar';
 import UpcomingEventGrid from '../components/UpcomingEventGrid';
 import './UpcomingEvents.css';
+import { Link } from 'react-router-dom'
 
 function UpcomingEvents() {
     return (
@@ -17,7 +18,7 @@ function UpcomingEvents() {
                     justifyContent: 'flex-start',
                     alignItems: 'center',
                     textAlign: 'center',
-                    color: '#1a1a1a'
+                   
                 }}
             >
                 <h1 style={{
@@ -40,7 +41,9 @@ function UpcomingEvents() {
             <UpcomingEventGrid />
 
             <div className="view-past-wrapper">
-                <button className="view-past-button">View All Past Events</button>
+                <Link to="/past-events">
+                    <button className="view-past-button">View All Past Events</button>
+                </Link>
             </div>
         </div>
     );
