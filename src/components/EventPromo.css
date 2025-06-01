@@ -5,6 +5,7 @@
   padding: 3rem 2rem;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 .promo-image img {

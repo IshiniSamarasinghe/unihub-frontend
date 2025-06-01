@@ -6,6 +6,7 @@ import Home from './pages/Home'; // Create this file if not created yet
 import UpcomingEvents from './pages/UpcomingEvents';
 import PastEvents from './pages/PastEvents';
 import EventDetails from './pages/EventDetails'; 
+import About from './pages/About';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/past-events" element={<PastEvents />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
           <Route path="/event/:id" element={<EventDetails />} />
+          <Route path="/about" element={<About />} />
 
 
 
