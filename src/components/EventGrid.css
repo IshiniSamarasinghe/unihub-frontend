@@ -64,6 +64,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: Poppins;
+  text-decoration: none;
 }
 
 .view-all-button:hover {
@@ -126,10 +127,10 @@
 
 .slider-arrow.left {
   position: absolute;
-  left: 10px;
+  left: -100px;
 }
 
 .slider-arrow.right {
   position: absolute;
-  right: 10px;
+  right: -100px;
 }

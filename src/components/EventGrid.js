@@ -1,6 +1,8 @@
 import React from 'react';
 import './EventGrid.css';
 import EventCard from './EventCard';
+import { Link } from 'react-router-dom';
+
 
 const events = [
   {
@@ -33,7 +35,7 @@ const events = [
     title: 'Research Showcase: Innovations in ICT',
     university: 'University of Kelaniya',
   },
-  
+
   // repeat as needed...
 ];
 
@@ -52,7 +54,10 @@ function EventGrid() {
       </div>
 
       <div className="view-all-wrapper">
-        <button className="view-all-button">View All Events</button>
+        <Link to="/upcoming-events" className="view-all-button">
+          View All Events
+        </Link>
+
       </div>
     </div>
   );
