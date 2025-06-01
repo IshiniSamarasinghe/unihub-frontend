@@ -75,12 +75,13 @@
 .event-image-container {
   position: relative;
   display: inline-block;
+  margin-left: 280px;
 }
 
 .more-menu-container {
   position: absolute;
   top: 14px;
-  right: 110px;
+  right: 200px;
   z-index: 10;
 }
 

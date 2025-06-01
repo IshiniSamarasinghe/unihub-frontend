@@ -1,8 +1,9 @@
 // src/components/Navbar.js
 import React, { useState } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
- 
+
 
 function Navbar() {
   const [isHoverSignUp, setIsHoverSignUp] = useState(false);
@@ -63,7 +64,9 @@ function Navbar() {
           onMouseEnter={() => setIsHoverSignUp(true)}
           onMouseLeave={() => setIsHoverSignUp(false)}
         >
-          Sign Up
+          <Link to="/signup" className="nav-signup-button">
+            Sign Up
+          </Link>
         </button>
 
         <button

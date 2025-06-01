@@ -58,6 +58,7 @@ function About() {
                         To create a centralized, student-friendly platform for discovering, managing,
                         and sharing university events — with real-time updates and easy access for all.
                     </p>
+                    
                     <button className="orange-button">Create Event</button>
                 </div>
             </section>

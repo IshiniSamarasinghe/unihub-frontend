@@ -1,5 +1,6 @@
 import React from 'react';
 import './EventPromo.css';
+ 
 
 function EventPromo() {
     return (
@@ -13,7 +14,10 @@ function EventPromo() {
                 <p className="promo-description">
                     Stay in the loop with the latest university events, insights, and success stories. From tech meetups to creative showcases, explore a collection of posts curated to keep you inspired and informed.
                 </p>
+                
+                 
                 <button className="promo-button">Create Event</button>
+                
             </div>
         </div>
     );
