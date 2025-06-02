@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import './SignUp.css';
+// eslint-disable-next-line no-unused-vars
+import { Link } from 'react-router-dom';
 
 function SignUp() {
   const [roles, setRoles] = useState([{ society: '', role: '' }]);
@@ -63,7 +65,10 @@ function SignUp() {
           <div className="terms">
             <input type="checkbox" id="agree" className="box" />
             <label htmlFor="agree" className="terms-text">
-              You already have an account? <a href="/login">Sign in</a>
+              <p>
+                You already have an account?&nbsp;
+                <Link to="/signin">Sign in</Link>
+              </p>
             </label>
           </div>
 
