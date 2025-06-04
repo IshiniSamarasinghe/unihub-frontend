@@ -68,14 +68,15 @@ function Navbar() {
             Sign Up
           </Link>
         </button>
-
-        <button
-          style={createEventStyle}
-          onMouseEnter={() => setIsHoverCreate(true)}
-          onMouseLeave={() => setIsHoverCreate(false)}
-        >
-          Create Event
-        </button>
+        <Link to="/create-event" className="nav-create-button">
+          <button
+            style={createEventStyle}
+            onMouseEnter={() => setIsHoverCreate(true)}
+            onMouseLeave={() => setIsHoverCreate(false)}
+          >
+            Create Event
+          </button>
+        </Link>
       </div>
     </nav>
   );

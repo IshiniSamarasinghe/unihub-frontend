@@ -10,7 +10,7 @@ function EventPromo() {
             </div>
             <div className="promo-text">
                 <p className="promo-label">CREATE</p>
-                <h2 className="promo-heading">YOUR LATEST EVENT POSTS</h2>
+                <h2 className="promo-heading">Your Latest Event Posts</h2>
                 <p className="promo-description">
                     Stay in the loop with the latest university events, insights, and success stories. From tech meetups to creative showcases, explore a collection of posts curated to keep you inspired and informed.
                 </p>

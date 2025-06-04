@@ -11,6 +11,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: bold;
+  margin-left: 20px;
   
 }
 
@@ -53,7 +54,9 @@
 .about-text h2 {
   font-size: 25px;
   margin: 0.5rem 0;
-  letter-spacing: 0.1rem;
+ 
+  font-weight:400;
+  font-family: Poppins;
 }
 
 .about-text p {

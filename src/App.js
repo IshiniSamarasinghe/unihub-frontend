@@ -8,12 +8,14 @@ import About from './pages/About';
 import SignUp from './pages/SignUp';
 import EventDetails from './pages/EventDetails';
 import SignIn from './pages/SignIn';
+import CreateEvent from './pages/CreateEvent';
 
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
   // ✅ Hide layout on signup and signin pages
-  const hideLayout = ['/signup', '/signin'].includes(location.pathname);
+  const hideLayout = ['/signup', '/signin', '/create-event'].includes(location.pathname);
+
 
   return (
     <>
@@ -36,6 +38,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/event/:id" element={<EventDetails />} />
+          <Route path="/create-event" element={<CreateEvent />} />
+
         </Routes>
       </LayoutWrapper>
     </Router>
