@@ -35,7 +35,7 @@ function About() {
                         UniHub brings everything together in one place — built for better awareness,
                         engagement, and student collaboration.
                     </p>
-                    <Link to="/upcoming-events" className="orange-button">View Events</Link>
+                    <Link to="/events" className="orange-button">View Events</Link>
 
                 </div>
                 <div className="about-image">
@@ -58,8 +58,9 @@ function About() {
                         To create a centralized, student-friendly platform for discovering, managing,
                         and sharing university events — with real-time updates and easy access for all.
                     </p>
-                    
+                    <Link to="/create-event"> 
                     <button className="orange-button">Create Event</button>
+                    </Link>
                 </div>
             </section>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './EventPromo.css';
+import { Link } from 'react-router-dom';
  
 
 function EventPromo() {
@@ -15,8 +16,9 @@ function EventPromo() {
                     Stay in the loop with the latest university events, insights, and success stories. From tech meetups to creative showcases, explore a collection of posts curated to keep you inspired and informed.
                 </p>
                 
-                 
+                 <Link to="/create-event" className="event-promo-button"> 
                 <button className="promo-button">Create Event</button>
+                </Link>
                 
             </div>
         </div>

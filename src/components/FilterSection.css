@@ -38,3 +38,15 @@
   border: 0.1px solid black;
 
 }
+
+.filter-button.clear {
+  background-color: #f5f5f5;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.filter-button.clear:hover {
+  background-color: white;
+  border: 1px solid black;
+}
+
