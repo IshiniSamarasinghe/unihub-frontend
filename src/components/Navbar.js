@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
-
-
+import { FaStore } from 'react-icons/fa';
 
 function Navbar() {
   const [isHoverSignUp, setIsHoverSignUp] = useState(false);
@@ -56,18 +55,22 @@ function Navbar() {
         <a href="/" className="nav-link">Home</a>
         <a href="/events" className="nav-link">Events</a>
         <a href="/about" className="nav-link">About</a>
+         
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+       
+
         <button
           style={signUpStyle}
           onMouseEnter={() => setIsHoverSignUp(true)}
           onMouseLeave={() => setIsHoverSignUp(false)}
         >
-          <Link to="/signup" className="nav-signup-button">
+          <Link to="/signup" className="nav-signup-button" style={{ textDecoration: 'none', color: 'inherit' }}>
             Sign Up
           </Link>
         </button>
+
         <Link to="/create-event" className="nav-create-button">
           <button
             style={createEventStyle}
@@ -76,6 +79,9 @@ function Navbar() {
           >
             Create Event
           </button>
+        </Link>
+          <Link to="/store" title="Go to Store" className="store-icon-link" style={{ color: '#fff', fontSize: '1.2rem' }}>
+          <FaStore />
         </Link>
       </div>
     </nav>

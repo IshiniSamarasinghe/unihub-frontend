@@ -10,32 +10,32 @@ function Home() {
   // All hardcoded events
   const allEvents = [
     {
-      image: '/assets/events/codecraft.jpg',
-      title: 'CodeCraft Hackathon 2025',
+      image: '/assets/events/1.jpeg',
+      title: 'Sneha Warsha 2025',
       university: 'Kelaniya',
       faculty: 'Faculty of Computing and Technology',
-      society: 'ITSA',
+      society: ' ',
     },
     {
-      image: '/assets/events/quantum.jpg',
-      title: 'Quantum Computing Workshop',
-      university: 'Moratuwa',
-      faculty: 'Faculty of Physical Science',
-      society: 'ETSA',
-    },
-    {
-      image: '/assets/events/research.jpg',
-      title: 'Research Showcase: Innovations in ICT',
+      image: '/assets/events/2.jpeg',
+      title: 'Sankramana 2025',
       university: 'Kelaniya',
-      faculty: 'Faculty of Social Science',
-      society: 'CSSA',
+      faculty: ' ',
+      society: 'Union of Students association ',
     },
     {
-      image: '/assets/events/1.jpg',
-      title: 'AI & Robotics Meetup',
-      university: 'Colombo',
+      image: '/assets/events/3.jpeg',
+      title: 'Champions League 2024',
+      university: 'Kelaniya',
       faculty: 'Faculty of Computing and Technology',
-      society: 'ISACA',
+      society: 'Union of Students association',
+    },
+    {
+      image: '/assets/events/4.jpeg',
+      title: 'Thun Dola 2024',
+      university: 'Kelaniya',
+      faculty: 'Faculty of Commerce and Management Studies',
+      society: 'Faculty of Commerce and Management Studies and union student council',
     },
   ];
 

@@ -9,6 +9,8 @@ import SignUp from './pages/SignUp';
 import EventDetails from './pages/EventDetails';
 import SignIn from './pages/SignIn';
 import CreateEvent from './pages/CreateEvent';
+import Store from './pages/Store';
+
 
 
 // Admin components
@@ -53,6 +55,8 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/event/:id" element={<EventDetails />} />
           <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/store" element={<Store />} />
+
 
           {/* ✅ Admin pages */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

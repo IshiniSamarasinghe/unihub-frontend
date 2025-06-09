@@ -24,4 +24,16 @@
     text-decoration: none;
     color: black;
   }
+
+  .store-icon-link {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.store-icon-link:hover {
+  color: #ead8b1;
+  transform: scale(1.2);
+}
+
   
