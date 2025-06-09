@@ -22,22 +22,35 @@ th, td {
   border-bottom: 1px solid #eee;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn2, .delete-btn2 {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
   margin-right: 10px;
-  color: #333;
+  color: #ffffff;
   transition: color 0.3s ease;
+ 
+  padding: 0.4rem 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 5px;
+ 
 }
 
-.edit-btn:hover {
-  color: #007bff;
+.edit-btn2:hover {
+  background-color: #000000;
 }
 
-.delete-btn:hover {
-  color: red;
+.edit-btn2{
+  background-color: #f0ad4e;
+}
+
+.delete-btn2:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+.delete-btn2{
+  background-color: #d9534f;
 }
 
 .menu-item:hover {

@@ -24,8 +24,8 @@ function AdminSocieties() {
                 <td>Computing and Technology</td>
                 <td>Kelaniya</td>
                 <td>
-                  <button className="edit-btn"><FaEdit /></button>
-                  <button className="delete-btn"><FaTrash /></button>
+                  <button className="edit-btn2"><FaEdit /></button>
+                  <button className="delete-btn2"><FaTrash /></button>
                 </td>
               </tr>
             ))}

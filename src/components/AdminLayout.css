@@ -35,15 +35,15 @@
 .admin-menu {
   display: flex;
   flex-direction: column;
-  gap: -10px;
-  margin-top: -120px;
+  gap:-50px;
+  margin-top: -70px;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: #333;
+  color: #000000;
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;

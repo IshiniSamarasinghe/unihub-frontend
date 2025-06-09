@@ -6,22 +6,22 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const pastEvents = [
   {
-    image: '/assets/events/codecraft.jpg',
+    image: '/assets/events/1.jpeg',
     title: 'CodeCraft 2024',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/codecraft.jpg',
+    image: '/assets/events/2.jpeg',
     title: 'CodeCraft 2023',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/codecraft.jpg',
+    image: '/assets/events/3.jpeg',
     title: 'CodeCraft 2022',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/codecraft.jpg',
+    image: '/assets/events/4.jpeg',
     title: 'CodeCraft 2021',
     university: 'University of Kelaniya',
   },
@@ -57,7 +57,7 @@ function PastEventSlider() {
 
   return (
     <div className="slider-section">
-      <h2 className="slider-heading">PAST CODECRAFT HACKATHON 2025 EVENTS</h2>
+      <h2 className="slider-heading">PAST Snehawarsha Events</h2>
       <div className="slider-wrapper">
         <button className="slider-arrow left" onClick={scrollLeft}>
           <FaChevronLeft />

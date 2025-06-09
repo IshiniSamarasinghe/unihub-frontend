@@ -30,12 +30,12 @@ function EventDetails() {
             color: '#1a1a1a'
           }}
         >
-          <h1>CodeCraft Hackathon 2025</h1>
+          <h1>Sneha Warsha 2025</h1>
         </div>
 
         {/* 🔽 Hero Image WITH More Icon */}
         <div className="event-image-container">
-          <img src="/assets/events/1.jpg" alt="CodeCraft" className="hero-image" />
+          <img src="/assets/events/1.jpeg" alt="CodeCraft" className="hero-image" />
 
           <div className="more-menu-container">
             <BsThreeDotsVertical

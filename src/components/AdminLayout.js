@@ -3,8 +3,11 @@ import React from 'react';
 import { FaClipboardList, FaClock, FaUsers, FaSignOutAlt, FaLock } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
+import { FaStore } from 'react-icons/fa';
 
-function AdminLayout({ children }) {
+
+function AdminLayout({ children, activePage }) {
+
     const location = useLocation();
 
     return (
@@ -30,6 +33,9 @@ function AdminLayout({ children }) {
                     </Link>
                     <Link to="/admin/societies" className={`menu-item ${location.pathname === "/admin/societies" ? "active" : ""}`}>
                         <FaClipboardList /> Societies
+                    </Link>
+                    <Link to="/admin/store" className={`menu-item ${activePage === 'store' ? 'active' : ''}`}>
+                        <FaStore /> Store
                     </Link>
                     <Link to="/admin/change-password" className={`menu-item ${location.pathname === "/admin/change-password" ? "active" : ""}`}>
                         <FaLock /> Change Password

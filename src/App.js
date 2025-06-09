@@ -21,6 +21,7 @@ import AdminUsers from './components/AdminUsers';
 import AdminSocieties from './components/AdminSocieties';
 import AdminLogin from './components/AdminLogin';
 import AdminChangePassword from './components/AdminChangePassword';
+import AdminStore from './components/AdminStore';
 
 
 
@@ -66,6 +67,7 @@ function App() {
           <Route path="/admin/societies" element={<AdminSocieties />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/change-password" element={<AdminChangePassword />} />
+          <Route path="/admin/store" element={<AdminStore />} />
 
 
 
