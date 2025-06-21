@@ -1,9 +1,9 @@
-// src/pages/SignUp.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axios';
 import './SignUp.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 function SignUp() {
   const [roles, setRoles] = useState([{ society: '', role: '' }]);
@@ -14,7 +14,7 @@ function SignUp() {
     phone: '',
     faculty: '',
   });
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [status, setStatus] = useState('idle');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -34,11 +34,25 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus('idle');
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@stu\.kln\.ac\.lk$/;
+    const phonePattern = /^[0-9]{10}$/;
+
+    if (!emailPattern.test(formData.email)) {
+      alert('❌ Email must end with @stu.kln.ac.lk');
+      return;
+    }
+
+    if (!phonePattern.test(formData.phone)) {
+      alert('❌ Phone number must be exactly 10 digits');
+      return;
+    }
+
     setStatus('loading');
 
     try {
       await axios.get('/sanctum/csrf-cookie');
-
       await axios.post('/api/register', {
         ...formData,
         roles,
@@ -46,7 +60,6 @@ function SignUp() {
 
       setStatus('success');
       console.log('✅ Registration success');
-
       setFormData({
         name: '',
         email: '',
@@ -80,32 +93,18 @@ function SignUp() {
           Welcome to UniHub! Sign Up and enjoy with creating and sharing events.
         </p>
         <img
-          src="/assets/signup-img.png"
-          alt="Illustration"
+          src="/react/assets/signup-img.png"
+          alt="Illustration bus"
           className="signup-illustration"
-        />
+        /> 
       </div>
 
       <div className="signup-right">
         <h2>Create New Account</h2>
         <form className="signup-form" onSubmit={handleSubmit}>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Name"
-            required
-          />
-          <input
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="University Email"
-            required
-          />
+          <input name="name" value={formData.name} onChange={handleInputChange} placeholder="Name" required />
+          <input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="University Email" required />
 
-          {/* Password with Show/Hide Toggle */}
           <div className="password-field" style={{ position: 'relative' }}>
             <input
               name="password"
@@ -114,7 +113,7 @@ function SignUp() {
               onChange={handleInputChange}
               placeholder="Password"
               required
-              style={{ paddingRight: '2rem' }}
+              style={{ paddingRight: '2.5rem' }}
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -124,53 +123,36 @@ function SignUp() {
                 top: '50%',
                 transform: 'translateY(-50%)',
                 cursor: 'pointer',
+                fontSize: '1.2rem',
+                color: '#555',
               }}
               title={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? '🙈' : '👁️'}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
 
-          <input
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder="Phone Number"
-            required
-          />
-          <input
-            name="faculty"
-            value={formData.faculty}
-            onChange={handleInputChange}
-            placeholder="Faculty"
-            required
-          />
+          <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone Number" required />
+          <input name="faculty" value={formData.faculty} onChange={handleInputChange} placeholder="Faculty" required />
 
           {roles.map((role, index) => (
             <div className="role-pair" key={index}>
-              <select
-                value={role.society}
-                onChange={(e) => handleRoleChange(index, 'society', e.target.value)}
-                required
-              >
+              <select value={role.society} onChange={(e) => handleRoleChange(index, 'society', e.target.value)} required>
                 <option value="">Select Society</option>
                 <option value="itsa">ITSA</option>
+                <option value="legion">Legion</option>
                 <option value="cssa">CSSA</option>
                 <option value="dancing">Dancing Club</option>
                 <option value="isaca">ISACA</option>
                 <option value="foss">FOSS</option>
               </select>
-              <select
-                value={role.role}
-                onChange={(e) => handleRoleChange(index, 'role', e.target.value)}
-                required
-              >
+              <select value={role.role} onChange={(e) => handleRoleChange(index, 'role', e.target.value)} required>
                 <option value="">Select Role</option>
                 <option value="president">President</option>
                 <option value="vp">Vice President</option>
                 <option value="jt">Junior Treasurer</option>
                 <option value="sec">Secretary</option>
-                <option value="editor">Co-editor</option>
+                <option value="coeditor">Co-editor</option>
                 <option value="committee">Committee Member</option>
                 <option value="member">Member</option>
               </select>
@@ -183,25 +165,18 @@ function SignUp() {
 
           <div className="terms">
             <input type="checkbox" className="box" required />
-            <label className="terms-text">
-              I agree to the terms & conditions.
-            </label>
+            <label className="terms-text">I agree to the terms & conditions.</label>
           </div>
 
           <button type="submit" className="signup-btn" disabled={status === 'loading'}>
-            {status === 'loading'
-              ? 'Signing Up...'
-              : status === 'success'
-              ? '✅ Registered!'
-              : 'Sign Up'}
+            {status === 'loading' ? 'Signing Up...' : status === 'success' ? '✅ Registered!' : 'Sign Up'}
           </button>
 
-          {/* ✅ Login link */}
-          <p style={{ marginTop: '1rem', fontSize: '10px', textAlign: 'center' }}>
+          <p style={{ marginTop: '1rem', fontSize: '12px', textAlign: 'center' }}>
             Already have an account?{' '}
             <span
               onClick={() => navigate('/signin')}
-              style={{ color: '#007bff', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'poppins' }}
+              style={{ color: '#007bff', cursor: 'pointer', textDecoration: 'underline' }}
             >
               Login here
             </span>

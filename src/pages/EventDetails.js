@@ -20,7 +20,7 @@ function EventDetails() {
         <div
           className="event-header"
           style={{
-            backgroundImage: "url('/assets/hero-image2.png')",
+            backgroundImage: "url('/react/assets/hero-image2.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: '100px',
@@ -35,7 +35,7 @@ function EventDetails() {
 
         {/* 🔽 Hero Image WITH More Icon */}
         <div className="event-image-container">
-          <img src="/assets/events/1.jpeg" alt="CodeCraft" className="hero-image" />
+          <img src="/react/assets/events/1.jpeg" alt="CodeCraft" className="hero-image" />
 
           <div className="more-menu-container">
             <BsThreeDotsVertical

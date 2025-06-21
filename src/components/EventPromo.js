@@ -7,7 +7,7 @@ function EventPromo() {
     return (
         <div className="promo-section">
             <div className="promo-image">
-                <img src="/assets/event-promo.png" alt="Promo" />
+                <img src="/react/assets/event-promo.png" alt="Promo" />
             </div>
             <div className="promo-text">
                 <p className="promo-label">CREATE</p>

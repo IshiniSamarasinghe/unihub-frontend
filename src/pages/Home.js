@@ -10,28 +10,28 @@ function Home() {
   // All hardcoded events
   const allEvents = [
     {
-      image: '/assets/events/1.jpeg',
+      image: '/react/assets/events/1.jpeg',
       title: 'Sneha Warsha 2025',
       university: 'Kelaniya',
       faculty: 'Faculty of Computing and Technology',
       society: ' ',
     },
     {
-      image: '/assets/events/2.jpeg',
+      image: '/react/assets/events/2.jpeg',
       title: 'Sankramana 2025',
       university: 'Kelaniya',
       faculty: ' ',
       society: 'Union of Students association ',
     },
     {
-      image: '/assets/events/3.jpeg',
+      image: '/react/assets/events/3.jpeg',
       title: 'Champions League 2024',
       university: 'Kelaniya',
       faculty: 'Faculty of Computing and Technology',
       society: 'Union of Students association',
     },
     {
-      image: '/assets/events/4.jpeg',
+      image: '/react/assets/events/4.jpeg',
       title: 'Thun Dola 2024',
       university: 'Kelaniya',
       faculty: 'Faculty of Commerce and Management Studies',

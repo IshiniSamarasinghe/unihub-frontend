@@ -6,22 +6,22 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const pastEvents = [
   {
-    image: '/assets/events/1.jpeg',
+    image: '/react/assets/events/1.jpeg',
     title: 'CodeCraft 2024',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/2.jpeg',
+    image: '/react/assets/events/2.jpeg',
     title: 'CodeCraft 2023',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/3.jpeg',
+    image: '/react/assets/events/3.jpeg',
     title: 'CodeCraft 2022',
     university: 'University of Kelaniya',
   },
   {
-    image: '/assets/events/4.jpeg',
+    image: '/react/assets/events/4.jpeg',
     title: 'CodeCraft 2021',
     university: 'University of Kelaniya',
   },

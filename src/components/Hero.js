@@ -11,7 +11,7 @@ function Hero() {
   return (
     <section
       style={{
-        backgroundImage: "url('/assets/hero-image2.png')",
+        backgroundImage: "url('/react/assets/hero-image2.png')",
         backgroundSize: 'cover',
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         backgroundPosition: 'center',

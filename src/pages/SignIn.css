@@ -1,7 +1,9 @@
-/* src/pages/SignIn.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
 .signin-container {
     display: flex;
     height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 
 .signin-left {
@@ -15,10 +17,9 @@
 }
 
 .signin-left .welcome-text {
-    margin-top: 1rem;
+    margin-top: 5px;
     font-size: 20px;
     max-width: 500px;
-    margin-top: 5px;
 }
 
 .signin-left .logo {
@@ -50,6 +51,7 @@
     padding: 0.7rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .signin-btn {
@@ -57,6 +59,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border: none;
 }
 
 .signin-options {
@@ -64,8 +67,6 @@
     justify-content: space-between;
     font-size: 0.85rem;
     margin-top: 0.5rem;
-
-
 }
 
 .signup-redirect {
@@ -84,5 +85,4 @@
     white-space: nowrap;
     font-size: 10px;
     margin-top: 1.5px;
-
 }

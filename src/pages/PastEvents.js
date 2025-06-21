@@ -10,7 +10,7 @@ function PastEvents() {
       <div
         className="events-hero"
         style={{
-          backgroundImage: "url('/assets/hero-image2.png')",
+          backgroundImage: "url('/react/assets/hero-image2.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '10px',

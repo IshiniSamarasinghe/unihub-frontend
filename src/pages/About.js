@@ -12,7 +12,7 @@ function About() {
             <div
                 className="about-hero"
                 style={{
-                    backgroundImage: "url('/assets/hero-image2.png')",
+                    backgroundImage: "url('/react/assets/hero-image2.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '140px',
@@ -39,7 +39,7 @@ function About() {
 
                 </div>
                 <div className="about-image">
-                    <img src="/assets/aboutus/aboutus-img1.png" alt="Chatting Illustration" />
+                    <img src="/react/assets/aboutus/aboutus-img1.png" alt="Chatting Illustration" />
                 </div>
             </section>
 
@@ -49,7 +49,7 @@ function About() {
             {/* Our Goal Section */}
             <section className="about-section reverse">
                 <div className="about-image">
-                    <img src="/assets/aboutus/aboutus-img2.png" alt="Music Illustration" />
+                    <img src="/react/assets/aboutus/aboutus-img2.png" alt="Music Illustration" />
                 </div>
                 <div className="about-text">
                     <h5>OUR GOAL</h5>

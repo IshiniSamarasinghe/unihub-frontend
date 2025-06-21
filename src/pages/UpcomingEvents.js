@@ -8,32 +8,32 @@ function UpcomingEvents() {
   // All upcoming events
   const upcomingEvents = [
     {
-      image: '/assets/events/1.jpeg',
+      image: '/react/assets/events/1.jpeg',
       title: 'Sneha Warsha 2025',
       university: 'University of Kelaniya',
     },
     {
-      image: '/assets/events/2.jpeg',
+      image: '/react/assets/events/2.jpeg',
       title: 'Sankramana 2025',
       university: 'University of Moratuwa',
     },
     {
-      image: '/assets/events/3.jpeg',
+      image: '/react/assets/events/3.jpeg',
       title: 'Champions League 2024',
       university: 'University of Colombo',
     },
      {
-      image: '/assets/events/4.jpeg',
+      image: '/react/assets/events/4.jpeg',
       title: 'Thun Dola 2024',
       university: 'University of Kelaniya',
     },
     {
-      image: '/assets/events/5.jpeg',
+      image: '/react/assets/events/5.jpeg',
       title: 'Ideathon 4.0',
       university: 'University of Kelaniya',
     },
     {
-      image: '/assets/events/6.jpeg',
+      image: '/react/assets/events/6.jpeg',
       title: 'Frostopia 2024',
       university: 'University of Kelaniya',
     },

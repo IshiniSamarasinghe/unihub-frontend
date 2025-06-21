@@ -2,15 +2,15 @@ import React from 'react';
 
 function UniversityLogos() {
   const logos = [
-    { src: '/assets/universities/uok.png', alt: 'University of Kelaniya' },
-    { src: '/assets/universities/colo.png', alt: 'University of Colombo' },
-    { src: '/assets/universities/pera.png', alt: 'University of Peradeniya' },
-    { src: '/assets/universities/jaff.png', alt: 'University of Jaffna' },
-    { src: '/assets/universities/jpura.png', alt: 'University of Sri Jayewardenepura' },
-    { src: '/assets/universities/art.png', alt: 'University of Visual & Performing Arts' },
-    { src: '/assets/universities/eas.png', alt: 'Eastern University' },
-    { src: '/assets/universities/mora.png', alt: 'University of Moratuwa' },
-    { src: '/assets/universities/ruhuna.png', alt: 'University of Ruhuna' },
+    { src: '/react/assets/universities/uok.png', alt: 'University of Kelaniya' },
+    { src: '/react/assets/universities/colo.png', alt: 'University of Colombo' },
+    { src: '/react/assets/universities/pera.png', alt: 'University of Peradeniya' },
+    { src: '/react/assets/universities/jaff.png', alt: 'University of Jaffna' },
+    { src: '/react/assets/universities/jpura.png', alt: 'University of Sri Jayewardenepura' },
+    { src: '/react/assets/universities/art.png', alt: 'University of Visual & Performing Arts' },
+    { src: '/react/assets/universities/eas.png', alt: 'Eastern University' },
+    { src: '/react/assets/universities/mora.png', alt: 'University of Moratuwa' },
+    { src: '/react/assets/universities/ruhuna.png', alt: 'University of Ruhuna' },
   ];
 
   return (
