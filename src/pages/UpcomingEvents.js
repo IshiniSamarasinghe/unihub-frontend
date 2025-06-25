@@ -4,6 +4,7 @@ import UpcomingEventGrid from '../components/UpcomingEventGrid';
 import './UpcomingEvents.css';
 import { Link } from 'react-router-dom';
 
+
 function UpcomingEvents() {
   // All upcoming events
   const upcomingEvents = [
