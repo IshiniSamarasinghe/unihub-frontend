@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // ✅ Remove baseURL because React proxy handles it
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'http://127.0.0.1:8000/api',
   withCredentials: true,
   headers: {
     'Accept': 'application/json',

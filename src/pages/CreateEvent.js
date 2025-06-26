@@ -35,36 +35,42 @@ function CreateEvent() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSuccessMessage('');
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSuccessMessage('');
 
-    try {
-      const eventData = new FormData();
-      Object.keys(formData).forEach(key => {
-        eventData.append(key, formData[key]);
-      });
-      if (media) eventData.append('media', media);
+  try {
+    const eventData = new FormData();
+    Object.keys(formData).forEach(key => {
+      eventData.append(key, formData[key]);
+    });
+    if (media) eventData.append('media', media);
 
-      await axios.post('/api/events', eventData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+    // Fetch CSRF token (only needed once per session usually)
+    await axios.get('/sanctum/csrf-cookie');
 
-      setSuccessMessage('Event details sent to approver.');
-      setFormData({
-        name: '', description: '', university: '', faculty: '', date: '',
-        time: '', type: '', location: '', audience: '', society: '', position: '', approver: ''
-      });
-      setMedia(null);
-    } catch (error) {
-      console.error('❌ Event creation failed:', error.response?.data || error.message);
-      alert('Failed to create event.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    // ✅ Add `withCredentials: true` inside axios.post config
+    await axios.post('/events', eventData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true,
+    });
+
+    setSuccessMessage('Event details sent to approver.');
+    setFormData({
+      name: '', description: '', university: '', faculty: '', date: '',
+      time: '', type: '', location: '', audience: '', society: '', position: '', approver: ''
+    });
+    setMedia(null);
+  } catch (error) {
+    console.error('❌ Event creation failed:', error.response?.data || error.message);
+    alert('Failed to create event.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <div className="create-event-container">
@@ -151,35 +157,36 @@ function CreateEvent() {
             </select>
 
             <select name="society" value={formData.society} onChange={handleInputChange} required>
-              <option value="">Select Hosting Society:</option>
               <option value="ITSA-society">ITSA</option>
               <option value="ETSA-society">ETSA</option>
+              <option value="CSSA-society">CSSA</option>
+              <option value="FOSS-society">FOSS</option>
               <option value="Legion-society">Legion</option>
               <option value="AISEC-society">AIESEC</option>
               <option value="LEO-society">Leo Club</option>
               <option value="Union">Union</option>
-              <option value="CSSA-society">CSSA</option>
               <option value="ISACA-society">ISACA</option>
               <option value="By-Faculty">By Faculty</option>
             </select>
 
             <select name="position" value={formData.position} onChange={handleInputChange} required>
               <option value="">Your Position in Society:</option>
-              <option value="member">Member</option>
-              <option value="co-editor">Co-Editor</option>
-              <option value="junior-treasurer">Junior Treasurer</option>
-              <option value="vice-president">Vice President</option>
               <option value="president">President</option>
+              <option value="vicepresident">Vice President</option>
               <option value="secretary">Secretary</option>
-              <option value="Organizing-Committee">Organizing Committee</option>
-
+              <option value="assistantsecretary">Assistant Secretary</option>
+              <option value="juniortreasurer">Junior Treasurer</option>
+              <option value="coeditor">Co-Editor</option>
+              <option value="committeemember">Committee Member</option>
+              <option value="member">Member</option>
+              <option value="organizingcommittee">Organizing Committee</option>
             </select>
 
             <select name="approver" value={formData.approver} onChange={handleInputChange} required>
               <option value="">Event Approver:</option>
               <option value="president">President</option>
-              <option value="vp">Vice President</option>
-              <option value="senior-treasurer">Senior Treasurer</option>
+              <option value="vicepresident">Vice President</option>
+              <option value="seniortreasurer">Senior Treasurer</option>
             </select>
           </div>
 

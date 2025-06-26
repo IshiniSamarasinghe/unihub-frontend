@@ -53,7 +53,7 @@ function SignUp() {
 
     try {
       await axios.get('/sanctum/csrf-cookie');
-      await axios.post('/api/register', {
+      await axios.post('/register', {
         ...formData,
         roles,
       });
@@ -96,7 +96,7 @@ function SignUp() {
           src="/react/assets/signup-img.png"
           alt="Illustration bus"
           className="signup-illustration"
-        /> 
+        />
       </div>
 
       <div className="signup-right">
@@ -139,22 +139,29 @@ function SignUp() {
             <div className="role-pair" key={index}>
               <select value={role.society} onChange={(e) => handleRoleChange(index, 'society', e.target.value)} required>
                 <option value="">Select Society</option>
-                <option value="itsa">ITSA</option>
-                <option value="legion">Legion</option>
-                <option value="cssa">CSSA</option>
-                <option value="dancing">Dancing Club</option>
-                <option value="isaca">ISACA</option>
-                <option value="foss">FOSS</option>
+                <option value="ITSA-society">ITSA</option>
+                <option value="ETSA-society">ETSA</option>
+                <option value="CSSA-society">CSSA</option>
+                <option value="FOSS-society">FOSS</option>
+                <option value="Legion-society">Legion</option>
+                <option value="AISEC-society">AIESEC</option>
+                <option value="LEO-society">Leo Club</option>
+                <option value="Union">Union</option>
+                <option value="ISACA-society">ISACA</option>
+                <option value="By-Faculty">By Faculty</option>
               </select>
+              
               <select value={role.role} onChange={(e) => handleRoleChange(index, 'role', e.target.value)} required>
                 <option value="">Select Role</option>
                 <option value="president">President</option>
-                <option value="vp">Vice President</option>
-                <option value="jt">Junior Treasurer</option>
-                <option value="sec">Secretary</option>
-                <option value="coeditor">Co-editor</option>
-                <option value="committee">Committee Member</option>
+                <option value="vicepresident">Vice President</option>
+                <option value="secretary">Secretary</option>
+                <option value="assistantsecretary">Assistant Secretary</option>
+                <option value="juniortreasurer">Junior Treasurer</option>
+                <option value="coeditor">Co-Editor</option>
+                <option value="committeemember">Committee Member</option>
                 <option value="member">Member</option>
+                <option value="organizingcommittee">Organizing Committee</option>
               </select>
             </div>
           ))}
