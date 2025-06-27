@@ -123,3 +123,8 @@ textarea {
   justify-content: center;
   margin-top: -10px;
 }
+
+.no-access-message{
+  text-align: center;
+  font-size: 12px;
+}
