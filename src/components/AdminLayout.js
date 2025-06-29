@@ -4,6 +4,7 @@ import { FaClipboardList, FaClock, FaUsers, FaSignOutAlt, FaLock } from 'react-i
 import { Link, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
 import { FaStore } from 'react-icons/fa';
+import { FaTimesCircle } from "react-icons/fa";
 
 
 function AdminLayout({ children, activePage }) {
@@ -27,6 +28,9 @@ function AdminLayout({ children, activePage }) {
                     </Link>
                     <Link to="/admin/approvals" className={`menu-item ${location.pathname === "/admin/approvals" ? "active" : ""}`}>
                         <FaClock /> Pending Approvals
+                    </Link>
+                    <Link to="/admin/rejected-approvals" className={`menu-item ${location.pathname === "/admin/rejected-approvals" ? "active" : ""}`}>
+                        <FaTimesCircle /> Rejected Approvals
                     </Link>
                     <Link to="/admin/users" className={`menu-item ${location.pathname === "/admin/users" ? "active" : ""}`}>
                         <FaUsers /> Users

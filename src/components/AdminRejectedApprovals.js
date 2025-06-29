@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import './AdminAllEvents.css';
 import AdminLayout from './AdminLayout';
 import axios from '../axios';
-import { FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
+import './AdminAllEvents.css'; // reuse same styles
 
-function AdminAllEvents() {
+function AdminRejectedApprovals() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/events/all')
+    axios.get('/events/rejected') // make sure backend supports this
       .then(res => {
         setEvents(res.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error('❌ Error fetching events:', err);
+        console.error("Error loading rejected events", err);
         setLoading(false);
       });
   }, []);
 
   return (
-    <AdminLayout active="events">
-      <div className="all-events-section">
-        <h2>All Events</h2>
-
+    <AdminLayout active="rejected">
+      <div className="approval-section">
+        <h2>Rejected Approvals</h2>
         {loading ? (
           <p>Loading...</p>
         ) : events.length === 0 ? (
-          <p>No events found.</p>
+          <p>No rejected events found.</p>
         ) : (
           <div className="table-scroll-container">
             <table>
@@ -65,21 +64,19 @@ function AdminAllEvents() {
                     <td>{event.time}</td>
                     <td>{event.location}</td>
                     <td>{event.audience}</td>
-                    <td>{event.description ? event.description.slice(0, 30) + '...' : 'N/A'}</td>
+                    <td>{event.description?.slice(0, 30)}...</td>
                     <td>{event.media_path ? 'Available' : 'Not Available'}</td>
                     <td>{event.approver}</td>
-                    <td><span className={`status ${event.status}`}>{event.status}</span></td>
+                    <td><span className="status rejected">{event.status}</span></td>
                     <td>{event.user_id}</td>
                     <td>{new Date(event.created_at).toLocaleDateString()}</td>
                     <td>{new Date(event.updated_at).toLocaleDateString()}</td>
                     <td className="icon-actions">
                       <FaEye
                         title="View"
-                        style={{ cursor: 'pointer', marginRight: '10px' }}
-                        onClick={() => window.open(`/event/${event.id}`, '_blank')}
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => window.open(`/events`, '_blank')}
                       />
-                      <FaEdit title="Edit" style={{ cursor: 'pointer', marginRight: '10px' }} />
-                      <FaTrash title="Delete" style={{ cursor: 'pointer' }} />
                     </td>
                   </tr>
                 ))}
@@ -92,4 +89,4 @@ function AdminAllEvents() {
   );
 }
 
-export default AdminAllEvents;
+export default AdminRejectedApprovals;

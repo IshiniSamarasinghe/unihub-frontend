@@ -1,9 +1,70 @@
- 
+/* Layout */
+.admin-layout {
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: #b4511f;
+  color: white;
+  min-height: 130vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-profile {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.admin-menu a {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  transition: background-color 0.2s;
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+.admin-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.menu-item.active {
+  background-color: #ead8b1;
+  font-weight: 500;
+  height: 30px;
+  color: #000000;
+}
 
 .admin-footer {
   text-align: center;
   font-size: 0.8rem;
   opacity: 0.8;
+  color: #fff;
+  margin-top: 50px;
 }
 
 /* Main Content */
@@ -14,7 +75,6 @@
   min-height: 100vh;
 }
 
-/* Topbar */
 .admin-topbar {
   display: flex;
   justify-content: space-between;
@@ -43,42 +103,90 @@
   cursor: pointer;
 }
 
-/* Table Section */
-.all-events-section h2 {
+/* Shared Table Section */
+.all-events-section h2,
+.approval-section h2,
+.rejected-events-section h2 {
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
-.all-events-section table {
+.all-events-section table,
+.approval-section table,
+.rejected-events-section table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+  overflow: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 10px; /* ✅ main font size set here */
 }
 
 .all-events-section th,
-.all-events-section td {
-  padding: 0.9rem 1rem;
-  font-size: 0.9rem;
-  border-bottom: 1px solid #eee;
+.all-events-section td,
+.approval-section th,
+.approval-section td,
+.rejected-events-section th,
+.rejected-events-section td {
+  padding: 0.6rem 0.8rem;
   text-align: left;
+  font-size: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Table Scroll Container */
+.table-scroll-container {
+  overflow-x: auto;
+  max-width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-scroll-container table {
+  font-size: 10px;
+}
+
+.table-scroll-container th,
+.table-scroll-container td {
+  font-size: 10px;
+  padding: 0.4rem 0.6rem;
+}
+
+/* Status Badges */
+.status.pending {
+  background-color: #f9c74f;
+  color: #000;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
 }
 
 .status.approved {
   background-color: #d4edda;
   color: #155724;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.75rem;
-  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
 }
 
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+}
+
+/* Action Buttons */
 .edit-btn,
 .delete-btn,
-.view-btn {
-  padding: 0.3rem 0.8rem;
-  font-size: 0.8rem;
+.view-btn,
+.approve-btn,
+.reject-btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -89,27 +197,46 @@
   background-color: #3498db;
   color: white;
 }
-
 .edit-btn:hover {
   background-color: #0281d6;
-  color: white;
 }
 
 .delete-btn {
   background-color: #e74c3c;
   color: white;
 }
-
 .delete-btn:hover {
- background-color: #c52817;
- color: white;
+  background-color: #c52817;
 }
+
 .view-btn {
   background-color: #384f68;
   color: white;
-   text-decoration: none;
+}
+.view-btn:hover {
+  background-color: #464646;
 }
 
-.view-btn:hover {
-  background-color: #464646;;
+.approve-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+.approve-btn:hover {
+  background-color: #00ae49;
+}
+
+.reject-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+.reject-btn:hover {
+  background-color: #c52817;
+}
+
+.desc-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.75rem;
 }

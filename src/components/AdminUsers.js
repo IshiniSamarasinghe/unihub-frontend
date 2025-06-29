@@ -10,14 +10,14 @@ function AdminUsers() {
   const [editData, setEditData] = useState({ phone: '', faculty: '', user_type: 'normal_user' });
 
   useEffect(() => {
-    axios.get('/api/users')
+    axios.get('/users')
       .then(res => setUsers(res.data))
       .catch(err => console.error('Error fetching users:', err));
   }, []);
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      axios.delete(`/api/users/${id}`)
+      axios.delete(`/users/${id}`)
         .then(() => setUsers(prev => prev.filter(user => user.id !== id)))
         .catch(err => alert("Failed to delete user."));
     }
@@ -39,7 +39,7 @@ function AdminUsers() {
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    axios.put(`/api/users/${editingUser.id}`, editData)
+    axios.put(`/users/${editingUser.id}`, editData)
       .then(res => {
         setUsers(prev =>
           prev.map(u => (u.id === editingUser.id ? res.data.user : u))
@@ -66,7 +66,7 @@ function AdminUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {Array.isArray(users) && users.map((user) => (
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -74,9 +74,13 @@ function AdminUsers() {
                 <td>{user.faculty}</td>
                 <td>{user.user_type}</td>
                 <td>
-                  {user.roles.map((role, i) => (
-                    <div key={i}>{role.society} - {role.role}</div>
-                  ))}
+                  {Array.isArray(user.roles) && user.roles.length > 0 ? (
+                    user.roles.map((role, i) => (
+                      <div key={i}>{role.society} - {role.role}</div>
+                    ))
+                  ) : (
+                    <span>N/A</span>
+                  )}
                 </td>
                 <td>
                   <button className="edit-btn" onClick={() => handleEditClick(user)}><FaUserEdit /></button>

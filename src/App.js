@@ -20,6 +20,8 @@ import AdminSocieties from './components/AdminSocieties';
 import AdminLogin from './components/AdminLogin';
 import AdminChangePassword from './components/AdminChangePassword';
 import AdminStore from './components/AdminStore';
+import AdminRejectedApprovals from './components/AdminRejectedApprovals';
+
 
 function LayoutWrapper({ children }) {
   const location = useLocation();
@@ -56,6 +58,7 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/events" element={<AdminAllEvents />} />
           <Route path="/admin/approvals" element={<AdminEventApproval />} />
+          <Route path="/admin/rejected-approvals" element={<AdminRejectedApprovals />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/societies" element={<AdminSocieties />} />
           <Route path="/admin/login" element={<AdminLogin />} />
