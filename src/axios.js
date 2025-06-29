@@ -1,6 +1,6 @@
+// src/axios.js
 import axios from 'axios';
 
-// ✅ Remove baseURL because React proxy handles it
 const axiosInstance = axios.create({
   baseURL: 'http://127.0.0.1:8000/api',
   withCredentials: true,
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// ✅ Keep the CSRF token logic
+// ✅ CSRF token support
 axiosInstance.interceptors.request.use((config) => {
   const tokenCookie = document.cookie
     .split('; ')

@@ -36,7 +36,7 @@ function AdminLayout({ children, activePage }) {
                         <FaUsers /> Users
                     </Link>
                     <Link to="/admin/societies" className={`menu-item ${location.pathname === "/admin/societies" ? "active" : ""}`}>
-                        <FaClipboardList /> Societies
+                        <FaClipboardList /> Society Approvers
                     </Link>
                     <Link to="/admin/store" className={`menu-item ${activePage === 'store' ? 'active' : ''}`}>
                         <FaStore /> Store

@@ -1,11 +1,36 @@
 // src/components/AdminDashboard.js
-import React from 'react';
-import './AdminDashboard.css';
+import React, { useEffect, useState } from 'react';
 import { FaClipboardList, FaClock, FaUsers } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import axios from '../axios';
 import AdminLayout from './AdminLayout';
 import './AdminDashboard.css';
 
 function AdminDashboard() {
+  const [dashboardStats, setDashboardStats] = useState({
+    totalEvents: 0,
+    pendingEvents: 0,
+    registeredUsers: 0,
+  });
+
+  const [recentEvents, setRecentEvents] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('/dashboard-metrics')
+      .then(res => {
+        setDashboardStats(res.data);
+      })
+      .catch(err => console.error('Failed to load dashboard stats', err));
+
+    axios.get('/events/all')
+      .then(res => {
+        const latestFive = res.data.slice(0, 5);
+        setRecentEvents(latestFive);
+      })
+      .catch(err => console.error('Failed to load recent events', err));
+  }, []);
+
   return (
     <AdminLayout activePage="dashboard">
       <div className="admin-topbar">
@@ -19,17 +44,17 @@ function AdminDashboard() {
         <div className="dashboard-card active">
           <FaClipboardList className="card-icon" />
           <h4>Total Events</h4>
-          <p>128</p>
+          <p>{dashboardStats.totalEvents}</p>
         </div>
         <div className="dashboard-card">
           <FaClock className="card-icon" />
           <h4>Pending Approvals</h4>
-          <p>12</p>
+          <p>{dashboardStats.pendingEvents}</p>
         </div>
         <div className="dashboard-card">
           <FaUsers className="card-icon" />
           <h4>Registered Users</h4>
-          <p>65</p>
+          <p>{dashboardStats.registeredUsers}</p>
         </div>
       </div>
 
@@ -43,15 +68,17 @@ function AdminDashboard() {
               <th>University</th>
               <th>Date</th>
               <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {[...Array(6)].map((_, index) => (
-              <tr key={index}>
-                <td>CodeFest 2025</td>
-                <td>Kelaniya</td>
-                <td>2025-07-15</td>
-                <td><span className="status pending">Pending</span></td>
+            {recentEvents.map((event) => (
+              <tr key={event.id}>
+                <td>{event.name}</td>
+                <td>{event.university}</td>
+                <td>{event.date}</td>
+                <td><span className={`status ${event.status}`}>{event.status}</span></td>
+                <td><button onClick={() => navigate('/admin/events')}>More Details</button></td>
               </tr>
             ))}
           </tbody>
@@ -59,7 +86,7 @@ function AdminDashboard() {
 
         <div className="submission-actions">
           <button className="clear-btn">Clear</button>
-          <button className="view-all-btn">View all</button>
+          <button className="view-all-btn" onClick={() => navigate('/admin/events')}>View all</button>
         </div>
       </div>
     </AdminLayout>
