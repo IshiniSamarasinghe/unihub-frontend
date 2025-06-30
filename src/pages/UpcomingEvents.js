@@ -1,54 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import UpcomingEventGrid from '../components/UpcomingEventGrid';
 import './UpcomingEvents.css';
 import { Link } from 'react-router-dom';
-
+import axios from '../axios';
 
 function UpcomingEvents() {
-  // All upcoming events
-  const upcomingEvents = [
-    {
-      image: '/react/assets/events/1.jpeg',
-      title: 'Sneha Warsha 2025',
-      university: 'University of Kelaniya',
-    },
-    {
-      image: '/react/assets/events/2.jpeg',
-      title: 'Sankramana 2025',
-      university: 'University of Moratuwa',
-    },
-    {
-      image: '/react/assets/events/3.jpeg',
-      title: 'Champions League 2024',
-      university: 'University of Colombo',
-    },
-     {
-      image: '/react/assets/events/4.jpeg',
-      title: 'Thun Dola 2024',
-      university: 'University of Kelaniya',
-    },
-    {
-      image: '/react/assets/events/5.jpeg',
-      title: 'Ideathon 4.0',
-      university: 'University of Kelaniya',
-    },
-    {
-      image: '/react/assets/events/6.jpeg',
-      title: 'Frostopia 2024',
-      university: 'University of Kelaniya',
-    },
-  ];
+  const [allEvents, setAllEvents] = useState([]);
+  const [filteredUpcoming, setFilteredUpcoming] = useState([]);
+  const [filteredPast, setFilteredPast] = useState([]);
 
-  // State to hold filtered events
-  const [filteredEvents, setFilteredEvents] = useState(upcomingEvents);
+  useEffect(() => {
+    axios.get('/events/all')
+      .then(response => {
+        const now = new Date();
 
-  // Triggered by SearchBar
+        const events = response.data.map(event => {
+          const eventDateTime = new Date(`${event.date}T${event.time || '00:00'}`);
+          return {
+            image: event.media_path ? `http://127.0.0.1:8000/storage/${event.media_path}` : '/default-image.jpg',
+            title: event.name,
+            university: event.university,
+            eventDateTime: eventDateTime,
+          };
+        });
+
+        const upcoming = events.filter(e => e.eventDateTime >= now);
+        const past = events.filter(e => e.eventDateTime < now);
+
+        setAllEvents(events);
+        setFilteredUpcoming(upcoming);
+        setFilteredPast(past);
+      })
+      .catch(error => {
+        console.error('Error fetching events:', error);
+      });
+  }, []);
+
   const handleSearch = (query) => {
-    const results = upcomingEvents.filter((event) =>
-      event.title.toLowerCase().includes(query.toLowerCase())
+    const lower = query.toLowerCase();
+    const upcoming = allEvents.filter(e =>
+      e.eventDateTime >= new Date() &&
+      e.title.toLowerCase().includes(lower)
     );
-    setFilteredEvents(results);
+    const past = allEvents.filter(e =>
+      e.eventDateTime < new Date() &&
+      e.title.toLowerCase().includes(lower)
+    );
+
+    setFilteredUpcoming(upcoming);
+    setFilteredPast(past);
   };
 
   return (
@@ -78,18 +79,15 @@ function UpcomingEvents() {
         </h1>
       </div>
 
-      {/* 🔍 Search bar with callback */}
       <SearchBar onSearch={handleSearch} />
 
-      {/* 🎯 Only matching events */}
-      <UpcomingEventGrid events={filteredEvents} />
+      <UpcomingEventGrid events={filteredUpcoming} />
 
       <div className="events-heropast">
         <h1>PAST EVENTS</h1>
       </div>
 
-      {/* You can later split past events properly */}
-      <UpcomingEventGrid events={filteredEvents} />
+      <UpcomingEventGrid events={filteredPast} />
 
       <div className="view-past-wrapper">
         <Link to="/past-events">

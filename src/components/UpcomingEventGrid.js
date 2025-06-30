@@ -7,7 +7,9 @@ function UpcomingEventGrid({ events }) {
     <div className="event-section">
       <div className="event-grid">
         {events.length === 0 ? (
-          <p style={{ fontFamily: 'Poppins', fontSize: '14px' }}>No upcoming events found.</p>
+          <p style={{ fontFamily: 'Poppins', fontSize: '14px' }}>
+            No upcoming events found.
+          </p>
         ) : (
           events.map((event, index) => (
             <EventCard

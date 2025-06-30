@@ -9,22 +9,27 @@ function AdminEventApproval() {
   const [loading, setLoading] = useState(true);
   const [expandedDesc, setExpandedDesc] = useState(null);
 
-  useEffect(() => {
+  // 🔁 Function to fetch events
+  const fetchEvents = () => {
+    setLoading(true);
     axios.get('/events/pending')
       .then(res => {
-        if (Array.isArray(res.data)) {
-          setEvents(res.data);
-        } else if (Array.isArray(res.data.events)) {
-          setEvents(res.data.events);
-        } else {
-          setEvents([]);
-        }
+        const data = Array.isArray(res.data)
+          ? res.data
+          : Array.isArray(res.data.events)
+          ? res.data.events
+          : [];
+        setEvents(data);
         setLoading(false);
       })
       .catch(err => {
         console.error('❌ Error fetching events:', err);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchEvents();
   }, []);
 
   const toggleDescription = (id) => {
