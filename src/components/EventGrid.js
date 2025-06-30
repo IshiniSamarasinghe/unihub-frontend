@@ -5,14 +5,13 @@ import EventCard from './EventCard';
 function EventGrid({ events }) {
   return (
     <div id="event-section" className="event-section">
-
       <div className="event-grid">
-        {events.length > 0 ? (
+        {Array.isArray(events) && events.length > 0 ? (
           events.map((event, index) => (
             <EventCard
-              key={index}
-              image={event.image}
-              title={event.title}
+              key={event.id || index}
+              image={event.image_url}
+              title={event.name}
               university={event.university}
             />
           ))
