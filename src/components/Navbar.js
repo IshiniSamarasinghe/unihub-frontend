@@ -55,6 +55,8 @@ function Navbar() {
         <a href="/" className="nav-link">Home</a>
         <a href="/events" className="nav-link">Events</a>
         <a href="/about" className="nav-link">About</a>
+        <a href="/calendar" className="nav-link">Calendar</a>
+
          
       </div>
 

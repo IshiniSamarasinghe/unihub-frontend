@@ -10,6 +10,9 @@ import EventDetails from './pages/EventDetails';
 import SignIn from './pages/SignIn';
 import CreateEvent from './pages/CreateEvent';
 import Store from './pages/Store';
+import CalendarPage from './pages/CalendarPage';
+import './App.css';
+
 
 // Admin components
 import AdminDashboard from './components/AdminDashboard';
@@ -53,6 +56,8 @@ function App() {
           <Route path="/event/:id" element={<EventDetails />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+
 
           {/* Admin pages */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

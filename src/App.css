@@ -41,4 +41,27 @@ body {
   }
 }
 
- 
+/* More specific rule using the custom class */
+.custom-calendar .react-calendar__tile--active {
+  background-color: #d1f0d1 !important;
+  color: rgb(31, 167, 7) !important;
+  border-radius: 10px;
+}
+
+/* Past Event (Red background) */
+.custom-calendar .past-event {
+  background-color: #f7d8d8 !important;
+  color: rgb(222, 1, 1) !important;
+  border-radius: 10px;
+}
+
+ /* Event date highlights */
+.upcoming-event {
+  background-color: #d4f4dd; /* baby green */
+  border-radius: 12px;
+}
+
+.past-event {
+  background-color: #f7d6d6; /* baby red */
+  border-radius: 12px;
+}
