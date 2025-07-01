@@ -13,11 +13,13 @@ function UpcomingEventGrid({ events }) {
         ) : (
           events.map((event, index) => (
             <EventCard
-              key={index}
+              key={event.id}
+              id={event.id} // ✅ Pass ID
               image={event.image}
               title={event.title}
               university={event.university}
             />
+
           ))
         )}
       </div>

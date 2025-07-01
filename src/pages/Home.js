@@ -18,8 +18,8 @@ function Home() {
       .then(response => {
         const formatted = response.data.map(event => ({
           id: event.id,
-          image_url: event.image_url || '',
-          name: event.name || '',
+          image: event.image_url || '/react/assets/events/default.jpg',
+          title: event.name || '',
           university: event.university || '',
           faculty: event.faculty || '',
           society: event.society || '',
@@ -37,7 +37,7 @@ function Home() {
       (!activeFilters.university || event.university === activeFilters.university) &&
       (!activeFilters.faculty || event.faculty === activeFilters.faculty) &&
       (!activeFilters.society || event.society === activeFilters.society) &&
-      (!search || event.name.toLowerCase().includes(search.toLowerCase()))
+      (!search || event.title.toLowerCase().includes(search.toLowerCase()))
     );
     setFilteredEvents(filtered);
   };

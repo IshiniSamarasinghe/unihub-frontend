@@ -18,12 +18,16 @@ function UpcomingEvents() {
         const events = response.data.map(event => {
           const eventDateTime = new Date(`${event.date}T${event.time || '00:00'}`);
           return {
-            image: event.media_path ? `http://127.0.0.1:8000/storage/${event.media_path}` : '/default-image.jpg',
+            id: event.id, // ✅ Add this line
+            image: event.media_path
+              ? `http://127.0.0.1:8000/storage/${event.media_path}`
+              : '/default-image.jpg',
             title: event.name,
             university: event.university,
             eventDateTime: eventDateTime,
           };
         });
+
 
         const upcoming = events.filter(e => e.eventDateTime >= now);
         const past = events.filter(e => e.eventDateTime < now);

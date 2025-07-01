@@ -2,26 +2,34 @@ import React, { useRef, useEffect, useState } from 'react';
 import './EventGrid.css';
 import EventCard from './EventCard';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import axios from '../axios'; // ✅ use your axios.js setup
+import axios from '../axios';
 
 function UpcomingEventSlider() {
   const sliderRef = useRef(null);
   const scrollByAmount = 300;
-
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     axios.get('/events/approved')
       .then(res => {
-        const formatted = res.data.map(event => ({
-          image: event.image_url || '/default-image.jpg',
+        const now = new Date();
+
+        const upcoming = res.data.filter(event => {
+          const eventDateTime = new Date(`${event.date}T${event.time}`);
+          return eventDateTime > now;
+        });
+
+        const formatted = upcoming.map(event => ({
+          id: event.id, // ✅ include ID
+          image: event.image_url || '/react/assets/events/default.jpg',
           title: event.name,
           university: event.university
         }));
+
         setEvents(formatted);
       })
       .catch(err => {
-        console.error('Failed to load upcoming events:', err);
+        console.error('❌ Failed to load upcoming events:', err);
       });
   }, []);
 
@@ -58,14 +66,21 @@ function UpcomingEventSlider() {
         </button>
 
         <div className="event-slider" ref={sliderRef}>
-          {events.map((event, index) => (
-            <EventCard
-              key={index}
-              image={event.image}
-              title={event.title}
-              university={event.university}
-            />
-          ))}
+          {events.length === 0 ? (
+            <p style={{ fontFamily: 'Poppins', fontSize: '14px', paddingLeft: '1rem' }}>
+              No upcoming events found.
+            </p>
+          ) : (
+            events.map((event) => (
+              <EventCard
+                key={event.id}
+                id={event.id} // ✅ enables redirection
+                image={event.image}
+                title={event.title}
+                university={event.university}
+              />
+            ))
+          )}
         </div>
 
         <button className="slider-arrow right" onClick={scrollRight}>

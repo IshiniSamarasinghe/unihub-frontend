@@ -2,51 +2,26 @@ import React from 'react';
 import './EventGrid.css'; // Reuse the same grid styles
 import EventCard from './EventCard';
 
-const pastEvents = [
-  {
-    image: '/react/assets/events/1.jpeg',
-    title: 'Sneha Warsha 2025',
-    university: 'University of Kelaniya',
-  },
-  {
-    image: '/react/assets/events/2.jpeg',
-    title: 'Sankramana 2025',
-    university: 'University of Moratuwa',
-  },
-  {
-    image: '/react/assets/events/3.jpeg',
-    title: 'Champions League 2024',
-    university: 'University of Kelaniya',
-  },
-  {
-    image: '/react/assets/events/4.jpeg',
-    title: 'Thun Dola 2024',
-    university: 'University of Kelaniya',
-  },
-  {
-    image: '/react/assets/events/5.jpeg',
-    title: 'IDEATHON 4.0',
-    university: 'University of Kelaniya',
-  },
-  {
-    image: '/react/assets/events/6.jpeg',
-    title: 'Frostipia 2024',
-    university: 'University of Kelaniya',
-  },
-];
-
-function PastEventGrid() {
+function PastEventGrid({ events }) {
   return (
     <div className="event-section">
       <div className="event-grid">
-        {pastEvents.map((event, index) => (
-          <EventCard
-            key={index}
-            image={event.image}
-            title={event.title}
-            university={event.university}
-          />
-        ))}
+        {events && events.length > 0 ? (
+          events.map((event, index) => (
+            <EventCard
+              key={event.id}
+              id={event.id} // ✅ pass ID
+              image={event.image}
+              title={event.title}
+              university={event.university}
+            />
+
+          ))
+        ) : (
+          <p style={{ fontFamily: 'Poppins', fontSize: '14px' }}>
+            No past events found.
+          </p>
+        )}
       </div>
     </div>
   );

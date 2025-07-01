@@ -9,9 +9,10 @@ function EventGrid({ events }) {
         {Array.isArray(events) && events.length > 0 ? (
           events.map((event, index) => (
             <EventCard
-              key={event.id || index}
-              image={event.image_url}
-              title={event.name}
+              key={event.id}
+              id={event.id}
+              image={event.image}        // ✅ fixed
+              title={event.title}        // ✅ fixed
               university={event.university}
             />
           ))
