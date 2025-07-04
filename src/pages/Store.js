@@ -1,37 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Store.css';
-
-const storeItems = [
-  {
-    id: 1,
-    title: 'Shield Tshirt',
-    description: 'We are taking pre orders now! This is your chance.',
-    image: '/react/assets/store/tshirt.jpeg',
-    faculty: 'Faculty of Computing and Technology',
-    price: 'Rs. 1200',
-    details: 'WhatsApp Us - 076 3514818',
-  },
-  {
-    id: 2,
-    title: 'Stillness of Night',
-    description: 'Custom-made bookmark to raise event funds.',
-    image: '/react/assets/store/bookmark.png',
-    faculty: 'Faculty of Computing and Technology',
-    price: 'Rs. 50',
-    details: 'WhatsApp Us - 077 6237016',
-  },
-  {
-    id: 3,
-    title: 'ITSA Fundraising Stickers',
-    description: 'Sticker pack for your laptop or notebook!',
-    image: '/react/assets/store/stickers.jpg',
-    faculty: 'Faculty of Computing and Technology',
-    price: 'Starting from Rs. 10/=',
-    details: 'WhatsApp Us - 076 3514818',
-  },
-];
+import axios from '../axios';
 
 function Store() {
+  const [storeItems, setStoreItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -43,6 +15,24 @@ function Store() {
     image: null
   });
 
+  // ✅ Fetch items from Laravel backend
+  useEffect(() => {
+    axios.get('/store-items')
+      .then(response => {
+        const formattedItems = response.data.map(item => ({
+          ...item,
+          image: item.image_path
+            ? `http://127.0.0.1:8000/storage/${item.image_path}`
+            : '/react/assets/store/default.jpg'
+        }));
+        setStoreItems(formattedItems);
+      })
+      .catch(error => {
+        console.error('Error fetching store items:', error);
+      });
+  }, []);
+
+  // ✅ Handle form input changes
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'image') {
@@ -57,19 +47,40 @@ function Store() {
     }
   };
 
-  const handleSubmit = (e) => {
+  // ✅ Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Item submitted:', formValues);
-    setShowForm(false);
-    setFormValues({
-      title: '',
-      faculty: '',
-      description: '',
-      price: '',
-      details: '',
-      image: null
-    });
-    alert('Item submitted! (Currently only logs to console)');
+
+    const formData = new FormData();
+    formData.append('title', formValues.title);
+    formData.append('faculty', formValues.faculty);
+    formData.append('description', formValues.description);
+    formData.append('price', formValues.price);
+    formData.append('details', formValues.details);
+    if (formValues.image) {
+      formData.append('image', formValues.image);
+    }
+
+    try {
+      const res = await axios.post('/store-items', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      const newItem = {
+        ...res.data,
+        image: res.data.image_path
+          ? `http://127.0.0.1:8000/storage/${res.data.image_path}`
+          : '/react/assets/store/default.jpg'
+      };
+      setStoreItems(prev => [newItem, ...prev]);
+      alert('Item submitted!');
+      setShowForm(false);
+      setFormValues({
+        title: '', faculty: '', description: '', price: '', details: '', image: null
+      });
+    } catch (error) {
+      console.error('Error submitting item:', error);
+      alert('Failed to submit item');
+    }
   };
 
   return (
@@ -120,7 +131,7 @@ function Store() {
               <input type="text" name="title" placeholder="Title" value={formValues.title} onChange={handleInputChange} required />
               <input type="text" name="faculty" placeholder="Faculty" value={formValues.faculty} onChange={handleInputChange} required />
               <input type="text" name="description" placeholder="Description" value={formValues.description} onChange={handleInputChange} required />
-              <input type="text" name="price" placeholder="Price" value={formValues.price} onChange={handleInputChange} required />
+              <input type="text" name="price" placeholder="Price" value={formValues.price} onChange={handleInputChange} />
               <input type="text" name="details" placeholder="WhatsApp or Contact Details" value={formValues.details} onChange={handleInputChange} required />
               <input type="file" name="image" accept=".jpg,.jpeg,.png" onChange={handleInputChange} required />
               <button type="submit">Submit Item</button>

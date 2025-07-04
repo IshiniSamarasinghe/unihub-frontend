@@ -3,8 +3,6 @@
 .user-management {
   font-family: 'Poppins', sans-serif;
   margin-top: 2rem;
-
-  
 }
 
 .user-management h3 {
@@ -24,7 +22,8 @@ th, td {
   font-size: 12px;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -74,9 +73,11 @@ th, td {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 2rem; /* 👈 This creates the vertical gap */
+  margin-top: 2rem;
 }
- 
+
+/* ===== EDIT MODAL STYLES ===== */
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -92,9 +93,84 @@ th, td {
 
 .edit-modal {
   background: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 12px;
   width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: slideFadeIn 0.3s ease;
 }
 
+.edit-modal h4 {
+  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
 
+.edit-modal input,
+.edit-modal select,
+.edit-modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.edit-modal input:focus,
+.edit-modal select:focus,
+.edit-modal textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Buttons inside modal */
+.view-all-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-all-btn:hover {
+  background-color: #0056b3;
+}
+
+.clear-btn {
+  background-color: #ccc;
+  color: black;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #999;
+}
+
+/* Smooth animation */
+@keyframes slideFadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

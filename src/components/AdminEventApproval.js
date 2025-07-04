@@ -9,7 +9,9 @@ function AdminEventApproval() {
   const [loading, setLoading] = useState(true);
   const [expandedDesc, setExpandedDesc] = useState(null);
 
-  // 🔁 Function to fetch events
+  const [editEvent, setEditEvent] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+
   const fetchEvents = () => {
     setLoading(true);
     axios.get('/events/pending')
@@ -34,6 +36,36 @@ function AdminEventApproval() {
 
   const toggleDescription = (id) => {
     setExpandedDesc(prev => (prev === id ? null : id));
+  };
+
+  const openEditModal = (event) => {
+    setEditEvent(event);
+    setShowEditModal(true);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditEvent({ ...editEvent, [name]: value });
+  };
+
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`/events/${editEvent.id}`, editEvent);
+      setShowEditModal(false);
+      fetchEvents();
+    } catch (err) {
+      console.error('Failed to update event:', err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this event?')) return;
+    try {
+      await axios.delete(`/events/${id}`);
+      setEvents(events.filter(event => event.id !== id));
+    } catch (err) {
+      console.error('Failed to delete event:', err);
+    }
   };
 
   return (
@@ -114,18 +146,41 @@ function AdminEventApproval() {
                       <FaEdit
                         title="Edit"
                         style={{ cursor: 'pointer', marginRight: '10px' }}
-                        onClick={() => alert('Edit functionality not implemented yet')}
+                        onClick={() => openEditModal(event)}
                       />
                       <FaTrash
                         title="Delete"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => alert('Delete functionality not implemented yet')}
+                        onClick={() => handleDelete(event.id)}
                       />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {showEditModal && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <h3>Edit Event</h3>
+              <input type="text" name="name" value={editEvent.name} onChange={handleEditChange} placeholder="Event Name" />
+              <input type="text" name="society" value={editEvent.society} onChange={handleEditChange} placeholder="Society" />
+              <input type="text" name="university" value={editEvent.university} onChange={handleEditChange} placeholder="University" />
+              <input type="text" name="faculty" value={editEvent.faculty} onChange={handleEditChange} placeholder="Faculty" />
+              <input type="text" name="type" value={editEvent.type} onChange={handleEditChange} placeholder="Type" />
+              <input type="date" name="date" value={editEvent.date} onChange={handleEditChange} />
+              <input type="time" name="time" value={editEvent.time} onChange={handleEditChange} />
+              <input type="text" name="location" value={editEvent.location} onChange={handleEditChange} placeholder="Location" />
+              <input type="text" name="audience" value={editEvent.audience} onChange={handleEditChange} placeholder="Audience" />
+              <textarea name="description" value={editEvent.description} onChange={handleEditChange} placeholder="Description" />
+
+              <div className="modal-actions">
+                <button onClick={handleUpdate} className="edit-btn1">Update</button>
+                <button onClick={() => setShowEditModal(false)} className="delete-btn1">Cancel</button>
+              </div>
+            </div>
           </div>
         )}
       </div>
