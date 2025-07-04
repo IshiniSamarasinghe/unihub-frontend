@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from '../axios';
+import './CalendarPage.css';
+
 
 function CalendarPage() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -20,7 +22,7 @@ function CalendarPage() {
 
     return (
         <div style={{ padding: '2rem' }}>
-            <h3 style={{ marginBottom: '20px', textAlign: 'center', fontWeight: 'bold', marginLeft: '-500px' }}>
+            <h3 className="calendar-heading">
                 <span role="img" aria-label="calendar">📅</span> Event Calendar
             </h3>
 

@@ -11,7 +11,7 @@
 
 .events-heropast {
   font-family: 'Playfair Display', serif;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -37,4 +37,20 @@
   background-color: rgb(0, 0, 0);
   border: 1px solid rgb(255, 255, 255);
   color: #fff;
+}
+
+@media (max-width: 768px) {
+
+   .events-hero {
+    height: 180px;
+    padding: 2rem 1rem;
+  }
+  .events-hero h1 {
+    font-size: 20px !important;
+    padding: 0.2rem 0.6rem !important;
+  }
+
+  .events-heropast{
+    font-size: 10px;
+  }
 }

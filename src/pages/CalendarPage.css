@@ -1,0 +1,14 @@
+.calendar-heading {
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: -500px;
+}
+
+@media (max-width: 768px) {
+  .calendar-heading {
+    font-size: 18px;
+    margin-top: 1rem;
+    margin-left: -1px;
+  }
+}

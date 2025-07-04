@@ -7,17 +7,18 @@
 
 .event-details-hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  font-size: 24px;
   margin-bottom: 1.5rem;
 }
 
 .event-details-hero img {
   width: 80%;
-  max-width: 900px;
+  max-width: 600px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   margin-bottom: 3rem;
+  margin-left: 30px;
 }
 
 /* 2-Column Detail Grid */
@@ -81,8 +82,9 @@
 .more-menu-container {
   position: absolute;
   top: 14px;
-  right: 200px;
+  right: 115px;
   z-index: 10;
+
 }
 
 .more-icon {
@@ -131,4 +133,85 @@
 
 .slider-heading {
   margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .more-menu-container {
+    position: absolute;
+    top: 12px;
+    left: 300px;
+    z-index: 10;
+
+  }
+
+  .event-details-hero img {
+    width: 40%;
+    max-width: 300px;
+  }
+
+  .event-details-grid {
+    padding: 0 2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  .event-image-container {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+
+  }
+
+  .more-menu-container {
+    right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .event-details-hero h1 {
+    font-size: 18px;
+    padding-left: 0.1px;
+  }
+
+  .event-details-grid {
+    padding: 0 1rem;
+    margin: 1.5rem auto;
+    font-size: 12px;
+    margin-left: 50px;
+
+  }
+
+  .event-image-container img {
+    width: 95%;
+  }
+
+  .more-menu-container {
+    top: 10px;
+    right: 20px;
+  }
+
+  .event-header {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-details-hero h1 {
+    font-size: 1.3rem;
+  }
+
+  .event-details-grid strong {
+    width: 100px;
+  }
+
+  .dropdown-menu {
+    right: 10px;
+    font-size: 0.85rem;
+  }
+
+  .event-details-grid p {
+    font-size: 0.9rem;
+  }
 }

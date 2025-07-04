@@ -70,10 +70,11 @@ function UpcomingEvents() {
           alignItems: 'center',
         }}
       >
-        <h1
+        <h1 className="events-heading"
+
           style={{
             fontFamily: 'Playfair Display',
-            fontSize: '2rem',
+            fontSize: '24px',
             padding: '0.5rem 1rem',
             borderRadius: '5px',
             textAlign: 'left',

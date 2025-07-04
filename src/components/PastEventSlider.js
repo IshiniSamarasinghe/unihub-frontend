@@ -52,7 +52,7 @@ function PastEventSlider({ events }) {
               />
             ))
           ) : (
-            <p style={{ padding: '1rem' }}>No related past events found.</p>
+            <p className='msg' style={{ padding: '1rem' }}>No related past events found.</p>
           )}
         </div>
 

@@ -86,7 +86,7 @@ function Store() {
   return (
     <div className="store-wrapper">
       <div className={`store-container ${selectedItem || showForm ? 'blurred' : ''}`}>
-        <h2>Support Student Fundraisers</h2>
+        <h2 className='topic1'>Support Student Fundraisers</h2>
 
         <div className="add-item-btn-wrapper">
           <button className="add-item-btn" onClick={() => setShowForm(true)}>
@@ -98,7 +98,7 @@ function Store() {
           {storeItems.map(item => (
             <div className="store-card" key={item.id}>
               <img src={item.image} alt={item.title} className="store-image" />
-              <h3>{item.title}</h3>
+              <h5>{item.title}</h5>
               <p className="item-description">{item.description}</p>
               <button className="buy-btn" onClick={() => setSelectedItem(item)}>View</button>
             </div>
@@ -112,8 +112,8 @@ function Store() {
           <div className="modal-content">
             <span className="close-modal" onClick={() => setSelectedItem(null)}>&times;</span>
             <img src={selectedItem.image} alt={selectedItem.title} />
-            <h3>{selectedItem.title}</h3>
-            <h5>{selectedItem.faculty}</h5>
+            <h4>{selectedItem.title}</h4>
+            <h6>{selectedItem.faculty}</h6>
             <p>{selectedItem.description}</p>
             <p>{selectedItem.price}</p>
             <p>{selectedItem.details}</p>
@@ -126,7 +126,7 @@ function Store() {
         <div className="store-modal1">
           <div className="modal-content1">
             <span className="close-modal" onClick={() => setShowForm(false)}>&times;</span>
-            <h3>Add Your Fundraising Item</h3>
+            <h4>Add Your Fundraising Item</h4>
             <form className="add-item-form" onSubmit={handleSubmit}>
               <input type="text" name="title" placeholder="Title" value={formValues.title} onChange={handleInputChange} required />
               <input type="text" name="faculty" placeholder="Faculty" value={formValues.faculty} onChange={handleInputChange} required />

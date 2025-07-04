@@ -4,7 +4,6 @@ import UniversityLogos from '../components/UniversityLogos';
 import EventPromo from '../components/EventPromo';
 import { Link } from 'react-router-dom';
 
-
 function About() {
     return (
         <div>

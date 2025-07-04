@@ -38,12 +38,12 @@
   color: white;
   padding: 0.5rem 1rem;
   border: none;
-  font-size: 0.85rem;
+  font-size: 12px;
   border-radius: 5px;
   cursor: pointer;
 }
 .item-description {
-  font-size: 14px;  /* Adjust as needed */
+  font-size: 10px;  /* Adjust as needed */
   line-height: 1.6; /* Optional: improves spacing */
   color: #444;
   margin-top: -5px;
@@ -102,13 +102,12 @@
 }
 .add-item-btn-wrapper {
   text-align: right;
-   
   margin-top: -50px; /* Pull button up slightly */
   margin-bottom: 1rem;
 }
 
 .add-item-btn {
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1.1rem;
   background-color: #b4511f;
   color: white;
   border: none;
@@ -120,7 +119,9 @@
 }
 
 .add-item-btn:hover {
-  background-color: #943f18;
+  background-color: #ffffff;
+  border: 1px solid black;
+  color: black;
 }
 
 .add-item-form input,
@@ -167,4 +168,92 @@
   width: 90%;
   position: relative;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.topic1{
+  font-size: 18px;
+}
+
+/* ✅ Responsive styles for tablets and smaller devices */
+@media (max-width: 1024px) {
+  .store-grid {
+    gap: 1.5rem;
+  }
+
+  .store-card {
+    width: 220px;
+  }
+
+  .modal-content,
+  .modal-content1 {
+    max-width: 90%;
+  }
+}
+
+/* ✅ Responsive styles for mobile devices */
+@media (max-width: 768px) {
+  .store-container {
+    padding: 1rem;
+  }
+
+  .store-card {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .add-item-btn-wrapper {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .store-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .add-item-form input,
+  .add-item-form textarea {
+    font-size: 0.85rem;
+  }
+
+  .modal-content,
+  .modal-content1 {
+    padding: 1.2rem;
+  }
+
+  .buy-btn {
+    width: 100%;
+  }
+}
+
+/* ✅ Smaller mobile screens */
+@media (max-width: 480px) {
+  .store-card {
+    padding: 0.8rem;
+  }
+
+  .add-item-btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .add-item-form input,
+  .add-item-form textarea {
+    padding: 0.5rem;
+  }
+
+  .add-item-form button {
+    width: 100%;
+  }
+
+  .store-image {
+    height: 160px;
+  }
+
+  .modal-content,
+  .modal-content1 {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
 }

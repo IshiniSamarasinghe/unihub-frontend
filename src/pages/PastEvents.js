@@ -52,7 +52,7 @@ function PastEvents() {
       >
         <h1 style={{
           fontFamily: 'Playfair Display',
-          fontSize: '2rem',
+          fontSize: '24px',
           padding: '0.5rem 1rem',
           borderRadius: '5px'
         }}>
