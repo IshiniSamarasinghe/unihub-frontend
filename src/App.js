@@ -12,7 +12,13 @@ import CreateEvent from './pages/CreateEvent';
 import Store from './pages/Store';
 import CalendarPage from './pages/CalendarPage';
 import './App.css';
+ 
+ 
 
+import { useEffect } from 'react';
+import { getToken, onMessage } from 'firebase/messaging';
+import { messaging } from './firebase';
+import axios from './axios';
 
 // Admin components
 import AdminDashboard from './components/AdminDashboard';
@@ -25,6 +31,8 @@ import AdminChangePassword from './components/AdminChangePassword';
 import AdminStore from './components/AdminStore';
 import AdminRejectedApprovals from './components/AdminRejectedApprovals';
 
+// Test FCM
+import TestNotification from './pages/TestNotification';
 
 function LayoutWrapper({ children }) {
   const location = useLocation();
@@ -42,6 +50,47 @@ function LayoutWrapper({ children }) {
 }
 
 function App() {
+  useEffect(() => {
+    const registerFCMToken = async () => {
+      try {
+        const permission = await Notification.requestPermission();
+
+        if (permission !== 'granted') {
+          console.warn('🚫 Notification permission denied.');
+          return;
+        }
+
+        console.log('✅ Notification permission granted.');
+
+        const VAPID_KEY = 'BPF7zDg3hUKF1wbgnkCI72xjYnNd8_5NHzE3OykFf3aaG7Y3rHu4YxtkyMUxVGtQg2r04yG24JtfpwCIiPLAqTQ';
+
+        const currentToken = await getToken(messaging, { vapidKey: VAPID_KEY });
+
+        if (currentToken) {
+          console.log('📲 FCM Token:', currentToken);
+
+          // Store for local reuse
+          localStorage.setItem('fcm_token', currentToken);
+
+          // Send to Laravel backend (via Sanctum-protected route)
+          await axios.post('/save-token', { token: currentToken });
+          console.log('✅ Token sent to backend');
+        }
+      } catch (err) {
+        console.error('❌ Error getting or sending FCM token:', err);
+      }
+    };
+
+    // Listen to foreground messages
+    onMessage(messaging, (payload) => {
+      console.log('📩 Foreground message received:', payload);
+      alert(`🔔 ${payload?.notification?.title}\n${payload?.notification?.body}`);
+    });
+
+    // Register token when app loads
+    registerFCMToken();
+  }, []);
+
   return (
     <BrowserRouter basename="/">
       <LayoutWrapper>
@@ -52,12 +101,12 @@ function App() {
           <Route path="/past-events" element={<PastEvents />} />
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} /> {/* ✅ Corrected route */}
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/event/:id" element={<EventDetails />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/store" element={<Store />} />
           <Route path="/calendar" element={<CalendarPage />} />
-
+          <Route path="/test-notification" element={<TestNotification />} />
 
           {/* Admin pages */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

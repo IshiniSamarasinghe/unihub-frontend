@@ -1,0 +1,42 @@
+/* NotificationToggle.css */
+
+.notification-container {
+  margin-bottom: 1.5rem;
+  height: 43px;
+  
+}
+
+.notification-header {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.notification-title {
+  margin-top: -20px;
+  margin-bottom: 0;
+  font-weight: regular;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notification-bell {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: #ffc107;
+}
+
+.notification-switch-label {
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #212529;
+}
+
+.form-check-input{
+    margin-top: 20px;
+}
+
+.form-check-label {
+    margin-left: 10px;
+}

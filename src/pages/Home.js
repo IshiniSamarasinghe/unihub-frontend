@@ -1,3 +1,4 @@
+// src/pages/Home.js
 import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import UniversityLogos from '../components/UniversityLogos';

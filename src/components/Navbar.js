@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
-import { FaStore } from 'react-icons/fa';
+import { FaStore, FaBell } from 'react-icons/fa';
+import NotificationToggle from './NotificationToggle';
 
 function Navbar() {
   const [isHoverSignUp, setIsHoverSignUp] = useState(false);
   const [isHoverCreate, setIsHoverCreate] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const signUpStyle = {
     backgroundColor: isHoverSignUp ? '#fff' : '#EAD8B1',
@@ -56,13 +58,9 @@ function Navbar() {
         <a href="/events" className="nav-link">Events</a>
         <a href="/about" className="nav-link">About</a>
         <a href="/calendar" className="nav-link">Calendar</a>
-
-         
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-       
-
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', position: 'relative' }}>
         <button
           style={signUpStyle}
           onMouseEnter={() => setIsHoverSignUp(true)}
@@ -82,9 +80,44 @@ function Navbar() {
             Create Event
           </button>
         </Link>
-          <Link to="/store" title="Go to Store" className="store-icon-link" style={{ color: '#fff', fontSize: '1.2rem' }}>
+
+        <Link to="/store" title="Go to Store" className="store-icon-link" style={{ color: '#fff', fontSize: '1.2rem' }}>
           <FaStore />
         </Link>
+
+        {/* 🔔 Notification Bell Icon */}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setShowDropdown(!showDropdown)}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: '#fff',
+              fontSize: '1.2rem',
+              cursor: 'pointer',
+            }}
+            title="Notification Preferences"
+          >
+            <FaBell />
+          </button>
+
+          {showDropdown && (
+            <div style={{
+              position: 'absolute',
+              right: 0,
+              top: '2rem',
+              background: '#fff',
+              padding: '1rem',
+              borderRadius: '10px',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+              minWidth: '200px',
+              zIndex: 999,
+              color: '#000',
+            }}>
+              <NotificationToggle />
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );
