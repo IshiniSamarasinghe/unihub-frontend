@@ -1,4 +1,8 @@
+// ✅ UniversityLogos.js (Mobile Responsive with Hover Effects)
+
 import React from 'react';
+import './UniversityLogos.css';
+
 
 function UniversityLogos() {
   const logos = [
@@ -14,40 +18,19 @@ function UniversityLogos() {
   ];
 
   return (
-    <div style={{ padding: '2rem 0', textAlign: 'center' }}>
-     
-    <div style={{
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '2rem',
-  flexWrap: 'wrap',
-  padding: '0 2rem',
-}}>
-  {logos.map((logo, index) => (
-    <div key={index} style={{
-      width: '80px',
-      height: '80px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <img
-        src={logo.src}
-        alt={logo.alt}
-        title={logo.alt}
-        style={{
-          maxHeight: '60px',
-          maxWidth: '100%',
-          objectFit: 'contain',
-          transition: 'transform 0.3s ease',
-        }}
-        onMouseEnter={e => e.target.style.transform = 'scale(1.1)'}
-        onMouseLeave={e => e.target.style.transform = 'scale(1.0)'}
-      />
-    </div>
-  ))}
-</div>
+    <div className="university-logos-wrapper">
+      <div className="university-logos-grid">
+        {logos.map((logo, index) => (
+          <div key={index} className="university-logo-item">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              title={logo.alt}
+              className="university-logo-img"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

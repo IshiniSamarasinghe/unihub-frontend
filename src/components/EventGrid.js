@@ -1,3 +1,5 @@
+// ✅ EventGrid.js (Displays a grid of EventCard components)
+
 import React from 'react';
 import './EventGrid.css';
 import EventCard from './EventCard';
@@ -11,8 +13,8 @@ function EventGrid({ events }) {
             <EventCard
               key={event.id}
               id={event.id}
-              image={event.image}        // ✅ fixed
-              title={event.title}        // ✅ fixed
+              image={event.image}
+              title={event.title}
               university={event.university}
             />
           ))

@@ -1,3 +1,5 @@
+// ✅ FilterSection.js (Filter dropdowns + buttons)
+
 import React, { useState } from 'react';
 import './FilterSection.css';
 import { FaFilter, FaTimes } from 'react-icons/fa';

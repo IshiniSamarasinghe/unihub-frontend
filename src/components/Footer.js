@@ -1,3 +1,5 @@
+// ✅ Footer.js – Responsive footer with branding, links, and subscription
+
 import React from 'react';
 import './Footer.css';
 
@@ -21,6 +23,7 @@ function Footer() {
             <li><a href="/">Home</a></li>
             <li><a href="/events">Events</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/calander">calander</a></li>
           </ul>
         </div>
 

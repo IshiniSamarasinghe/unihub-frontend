@@ -1,4 +1,5 @@
-/* ---------- Grid View Section (Past Events) ---------- */
+/* ✅ EventGrid.css */
+
 .event-section {
   padding: 2rem;
 }
@@ -48,7 +49,6 @@
   font-family: Poppins;
 }
 
-/* ---------- View All Button ---------- */
 .view-all-wrapper {
   display: flex;
   justify-content: center;
@@ -72,6 +72,32 @@
   background-color: #000;
   border: 1px solid #fff;
   color: #fff;
+}
+
+/* 🔄 Responsive Grid */
+@media (max-width: 1024px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .event-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* 📱 Force 1 column on smaller screens */
+@media (max-width: 600px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Slider Section (Upcoming Events) ---------- */
@@ -101,7 +127,7 @@
   overflow: hidden;
   gap: 1rem;
   scroll-behavior: smooth;
-  width: 900px; /* fit exactly 3 cards (280 * 3 + gap) */
+  width: 900px;
   scrollbar-width: none;
 }
 
@@ -109,7 +135,6 @@
   display: none;
 }
 
-/* ---------- Arrows ---------- */
 .slider-arrow {
   background: none;
   border: none;

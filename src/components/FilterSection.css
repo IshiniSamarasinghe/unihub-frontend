@@ -1,3 +1,5 @@
+/* ✅ FilterSection.css */
+
 .filter-container {
   display: flex;
   gap: 1rem;
@@ -13,8 +15,7 @@
   border-radius: 5px;
   font-size: 12px;
   cursor: pointer;
-  font-family:Poppins;
-  
+  font-family: Poppins;
 }
 
 .filter-button {
@@ -27,16 +28,16 @@
   font-weight: 500;
   font-size: 12px;
   cursor: pointer;
-  font-family:Poppins;
+  font-family: Poppins;
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .filter-button:hover {
   background-color: white;
   color: black;
   border: 0.1px solid black;
-
 }
 
 .filter-button.clear {
@@ -50,3 +51,26 @@
   border: 1px solid black;
 }
 
+@media (max-width: 768px) {
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* ✅ Center whole row */
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+
+  .dropdown,
+  .filter-button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .filter-button {
+    justify-content: center;
+    width: 30%;
+  }
+}

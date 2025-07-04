@@ -15,7 +15,7 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    axios.get('/events/all')
+    axios.get('/events/approved')
       .then(response => {
         const formatted = response.data.map(event => ({
           id: event.id,

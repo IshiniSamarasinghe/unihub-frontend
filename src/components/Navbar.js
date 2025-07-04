@@ -1,122 +1,46 @@
-// src/components/Navbar.js
 import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
-import { FaStore, FaBell } from 'react-icons/fa';
+import { FaStore, FaBell, FaBars, FaTimes } from 'react-icons/fa';
 import NotificationToggle from './NotificationToggle';
 
 function Navbar() {
-  const [isHoverSignUp, setIsHoverSignUp] = useState(false);
-  const [isHoverCreate, setIsHoverCreate] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-
-  const signUpStyle = {
-    backgroundColor: isHoverSignUp ? '#fff' : '#EAD8B1',
-    color: isHoverSignUp ? '#000' : '#000',
-    border: 'none',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontWeight: 'regular',
-    transition: 'all 0.3s ease',
-    fontSize: '12px',
-    fontFamily: 'Poppins, sans-serif',
-  };
-
-  const createEventStyle = {
-    backgroundColor: isHoverCreate ? '#fff' : '#000',
-    color: isHoverCreate ? '#000' : '#fff',
-    border: 'none',
-    padding: '0.5rem 1rem',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontWeight: 'regular',
-    transition: 'all 0.3s ease',
-    fontSize: '12px',
-    fontFamily: 'Poppins, sans-serif',
-  };
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav style={{
-      backgroundColor: '#B4511F',
-      padding: '1rem 2rem',
-      color: 'white',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontFamily: 'Poppins, sans-serif',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000,
-    }}>
-      <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-        UniHub
+    <nav className="navbar">
+      <div className="navbar-brand">UniHub</div>
+
+      <div className="hamburger" onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
+        {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
-      <div style={{ display: 'flex', gap: '1.5rem', fontSize: '12px', justifyContent: 'center', alignItems: 'center' }}>
-        <a href="/" className="nav-link">Home</a>
-        <a href="/events" className="nav-link">Events</a>
-        <a href="/about" className="nav-link">About</a>
-        <a href="/calendar" className="nav-link">Calendar</a>
-      </div>
+      <div className={`navbar-links-container ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="navbar-center">
+          <a href="/" className="nav-link">Home</a>
+          <a href="/events" className="nav-link">Events</a>
+          <a href="/about" className="nav-link">About</a>
+          <a href="/calendar" className="nav-link">Calendar</a>
+        </div>
 
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', position: 'relative' }}>
-        <button
-          style={signUpStyle}
-          onMouseEnter={() => setIsHoverSignUp(true)}
-          onMouseLeave={() => setIsHoverSignUp(false)}
-        >
-          <Link to="/signup" className="nav-signup-button" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Sign Up
+        <div className="navbar-right">
+          <Link to="/signup" className="nav-signup-button">Sign Up</Link>
+
+          <Link to="/create-event" className="nav-create-button">Create Event</Link>
+
+          <Link to="/store" className="icon-btn">
+            <FaStore />
           </Link>
-        </button>
 
-        <Link to="/create-event" className="nav-create-button">
-          <button
-            style={createEventStyle}
-            onMouseEnter={() => setIsHoverCreate(true)}
-            onMouseLeave={() => setIsHoverCreate(false)}
-          >
-            Create Event
-          </button>
-        </Link>
-
-        <Link to="/store" title="Go to Store" className="store-icon-link" style={{ color: '#fff', fontSize: '1.2rem' }}>
-          <FaStore />
-        </Link>
-
-        {/* 🔔 Notification Bell Icon */}
-        <div style={{ position: 'relative' }}>
-          <button
-            onClick={() => setShowDropdown(!showDropdown)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#fff',
-              fontSize: '1.2rem',
-              cursor: 'pointer',
-            }}
-            title="Notification Preferences"
-          >
+          <div className="icon-btn" onClick={() => setShowDropdown(!showDropdown)}>
             <FaBell />
-          </button>
-
-          {showDropdown && (
-            <div style={{
-              position: 'absolute',
-              right: 0,
-              top: '2rem',
-              background: '#fff',
-              padding: '1rem',
-              borderRadius: '10px',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-              minWidth: '200px',
-              zIndex: 999,
-              color: '#000',
-            }}>
-              <NotificationToggle />
-            </div>
-          )}
+            {showDropdown && (
+              <div className="notification-dropdown">
+                <NotificationToggle />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>
