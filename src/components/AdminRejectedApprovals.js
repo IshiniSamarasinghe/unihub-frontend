@@ -27,7 +27,10 @@ function AdminRejectedApprovals() {
         {loading ? (
           <p>Loading...</p>
         ) : events.length === 0 ? (
-          <p>No rejected events found.</p>
+          <p style={{ fontSize: '12px', color: '#555', textAlign: 'center', marginTop: '20px' }}>
+  No rejected events found.
+</p>
+
         ) : (
           <div className="table-scroll-container">
             <table>

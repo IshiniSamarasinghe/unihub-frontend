@@ -10,7 +10,10 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">UniHub</div>
+      <Link to="/" className="navbar-brand">
+        <img src="/react/assets/logo.png" alt="UniHub Logo" className="navbar-logo" />
+      </Link>
+
 
       <div className="hamburger" onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
         {isMobileMenuOpen ? <FaTimes /> : <FaBars />}

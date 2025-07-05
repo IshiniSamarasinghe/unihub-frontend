@@ -54,7 +54,7 @@ function AdminAllEvents() {
   return (
     <AdminLayout>
       <div className="admin-all-events">
-        <h2>All Events</h2>
+        <h2 className='topic'>All Events</h2>
         <div className="table-container">
           <table className="events-table">
             <thead>

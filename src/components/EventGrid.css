@@ -56,7 +56,7 @@
 }
 
 .view-all-button {
-  background-color: #EAD8B1;
+  background-color: #FDEBDA;
   color: black;
   padding: 0.6rem 1.5rem;
   font-size: 12px;
@@ -121,7 +121,7 @@
 
 .slider-arrow:hover {
   transform: scale(1.2);
-  color: #b4511f;
+  color: #005763;
 }
 
 .slider-arrow.left {

@@ -4,6 +4,9 @@
   text-align: center;
   margin-left: -500px;
 }
+.warning{
+  font-size: 12px;
+}
 
 @media (max-width: 768px) {
   .calendar-heading {

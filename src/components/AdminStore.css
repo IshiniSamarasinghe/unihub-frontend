@@ -7,6 +7,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  font-size: 10px;
+}
+
+.topic{
+  font-size: 12px;
 }
 
 .add-btn {

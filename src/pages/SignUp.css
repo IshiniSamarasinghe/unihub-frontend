@@ -7,7 +7,7 @@
 
 .signup-left {
     flex: 1;
-    background-color: #b4511f;
+    background-color: #005763;
     color: #fff;
     padding: 3rem;
     display: flex;
@@ -33,7 +33,7 @@
     width: 80%;
     max-width: 300px;
     margin-left: 40px;
-    
+
 }
 
 .signup-right {
@@ -107,4 +107,80 @@
     font-size: 10px;
     color: #000000;
     font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .signup-left {
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+        margin-top: 0;
+    }
+
+    .signup-left .logo {
+        margin-top: 0;
+        font-size: 1.8rem;
+    }
+
+    .signup-left .welcome-text {
+        font-size: 16px;
+        margin-top: 1rem;
+        max-width: 100%;
+    }
+
+    .signup-illustration {
+        max-width: 250px;
+        margin-left: 0;
+    }
+
+    .signup-right {
+        padding: 2rem 1rem;
+        margin-top: 0;
+    }
+
+    .role-pair {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .signup-form input,
+    .signup-form select {
+        padding: 0.7rem;
+        font-size: 14px;
+    }
+
+    .signup-btn {
+        padding: 0.8rem;
+        font-size: 15px;
+    }
+
+    .add-role {
+        font-size: 14px;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .terms {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+         
+   
+    }
+
+    .box {
+        margin-left: 50px;
+         
+    }
+
+
+    .terms-text {
+        font-size: 12px;
+        margin-left: 40px;
+    }
 }

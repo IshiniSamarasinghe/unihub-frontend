@@ -17,7 +17,7 @@ function AdminLayout({ children, activePage }) {
             <aside className="admin-sidebar">
                 <div className="admin-profile">
                     <img src="/assets/admin/admin1.png" alt="admin" className="admin-avatar" />
-                    <span>Welcome Ishini!</span>
+                    <span className='welcome'>Welcome Ishini!</span>
                 </div>
                 <nav className="admin-menu">
                     <Link to="/admin/dashboard" className={`menu-item ${location.pathname === "/admin/dashboard" ? "active" : ""}`}>

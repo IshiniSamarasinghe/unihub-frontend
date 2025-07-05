@@ -28,7 +28,7 @@ function Hero() {
     >
       <h1
         style={{
-          fontSize: '2rem',
+          fontSize: '28px',
           marginBottom: '0.4rem',
           marginTop: '0.1rem',
           fontFamily: 'Playfair Display, serif',
@@ -64,7 +64,7 @@ function Hero() {
         }}
         onClick={handleScroll}
         onMouseEnter={(e) => {
-          e.target.style.backgroundColor = '#EAD8B1';
+          e.target.style.backgroundColor = '#FDEBDA';
           e.target.style.color = '#000';
         }}
         onMouseLeave={(e) => {

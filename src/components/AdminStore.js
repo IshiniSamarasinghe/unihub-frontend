@@ -100,7 +100,7 @@ function AdminStore() {
     <AdminLayout activePage="store">
       <div className="admin-store-page">
         <div className="store-header">
-          <h2>Store Management</h2>
+          <h2 className='topic'>Store Management</h2>
         </div>
 
         <table className="store-table">

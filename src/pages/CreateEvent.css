@@ -6,7 +6,7 @@
 
 .create-left {
   flex: 1;
-  background-color: #a8460f; /* Rich orange */
+  background-color: #005763; /* Rich orange */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,7 @@
 .form-row textarea {
   flex: 1;
   padding: 10px;
-  border: 1px solid #a8460f;
+  border: 1px solid #005763;
   border-radius: 5px;
 }
 
@@ -73,7 +73,7 @@ textarea {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
-  color: #a8460f;
+  color: #005763;
   cursor: pointer;
   user-select: none;
 }
@@ -102,7 +102,7 @@ textarea {
   width: 16px;
   height: 16px;
   border: 3px solid #fff;
-  border-top: 3px solid #a8460f;
+  border-top: 3px solid #005763;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

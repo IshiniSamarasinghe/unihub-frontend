@@ -85,7 +85,7 @@ function CalendarPage() {
                     <div style={{ marginTop: '1rem' }}>
                         {getEventsForDate(selectedDate).length > 0 ? (
                             <>
-                                <h4>📌 Events on {selectedDate.toDateString()}</h4>
+                                <h5>📌 Events on {selectedDate.toDateString()}</h5>
                                 {getEventsForDate(selectedDate).map(ev => (
                                     <div
                                         key={ev.id}
@@ -109,7 +109,7 @@ function CalendarPage() {
                                 ))}
                             </>
                         ) : (
-                            <p><em>No events on this date.</em></p>
+                            <p className='warning'>No events on this date.</p>
                         )}
                     </div>
                 </div>

@@ -50,6 +50,7 @@
     flex-wrap: nowrap;
     /* ✅ keep them side by side */
     gap: 5px;
+     
   }
 
 
@@ -57,7 +58,7 @@
   .search-button {
     width: 100%;
     border-radius: 7px;
-    font-size: 14px;
+    font-size: 12px;
      
   }
 
