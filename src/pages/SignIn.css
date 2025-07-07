@@ -11,23 +11,27 @@
     background-color: #005763;
     color: white;
     padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+     
 }
 
 .signin-left .welcome-text {
-    margin-top: 5px;
-    font-size: 20px;
+    margin-top: -20px;
+    font-size: 14px;
     max-width: 500px;
+    margin-left: 15px;
 }
 
-.signin-left .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: -50px;
-    margin-left: -400px;
+ 
+.signin-logo {
+  width: 160px;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-left: -10px;        /* Adjust left spacing if needed */
+  object-fit: contain;
 }
+
+ 
+
 
 .signin-illustration {
     margin-top: 2rem;
@@ -72,6 +76,7 @@
 .signup-redirect {
     margin-top: 1rem;
     text-align: center;
+    font-size: 12px;
 }
 
 .forgot-password {
@@ -85,4 +90,69 @@
     white-space: nowrap;
     font-size: 10px;
     margin-top: 1.5px;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+    .signin-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .signin-left {
+        padding: 2rem;
+        align-items: center;
+        text-align: center;
+        margin-top: -10px;
+        margin-left: 0;
+    }
+
+    .signin-left .logo {
+        margin: 0 auto;
+    }
+
+    .signin-illustration {
+        width: 100%;
+        max-width: 220px;
+        margin: 1.5rem auto 0 auto;
+    }
+
+    .signin-right {
+        padding: 2rem;
+        font-size: 12px;
+    }
+
+    .signin-form input,
+    .signin-form button {
+        font-size: 10px;
+        padding: 0.6rem;
+    }
+
+    .signin-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.signup-redirect {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 10px;
+    margin-top: 1.5px;
+}
+
 }

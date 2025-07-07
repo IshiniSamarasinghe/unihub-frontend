@@ -88,7 +88,7 @@ function SignUp() {
   return (
     <div className="signup-container">
       <div className="signup-left">
-        <h1 className="logo">UniHub</h1>
+        <img src="/react/assets/logo.png" alt="UniHub Logo" className="signup-logo" />
         <p className="welcome-text">
           Welcome to UniHub! Sign Up and enjoy with creating and sharing events.
         </p>
@@ -100,7 +100,7 @@ function SignUp() {
       </div>
 
       <div className="signup-right">
-        <h2>Create New Account</h2>
+        <h4>Create New Account</h4>
         <form className="signup-form" onSubmit={handleSubmit}>
           <input name="name" value={formData.name} onChange={handleInputChange} placeholder="Name" required />
           <input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="University Email" required />

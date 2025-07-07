@@ -16,16 +16,19 @@
     align-items: flex-start;
 }
 
-.signup-left .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: -160px;
+.signup-logo {
+  width: 160px;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-left: -20px;        /* Adjust left spacing if needed */
+  object-fit: contain;
+  margin-top: -230px;
 }
 
 .signup-left .welcome-text {
-    margin-top: 5px;
-    font-size: 20px;
-    max-width: 500px;
+    margin-top: -20px;
+    font-size: 14px;
+    max-width: 400px;
 }
 
 .signup-illustration {
@@ -113,6 +116,7 @@
     .signup-container {
         flex-direction: column;
         padding: 1rem;
+        
     }
 
     .signup-left {
@@ -120,6 +124,8 @@
         text-align: center;
         padding: 2rem 1rem;
         margin-top: 0;
+         
+        
     }
 
     .signup-left .logo {
@@ -136,6 +142,7 @@
     .signup-illustration {
         max-width: 250px;
         margin-left: 0;
+        
     }
 
     .signup-right {

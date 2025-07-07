@@ -1,0 +1,39 @@
+.top-slider {
+  background-color: #ffffff;
+  color: black;
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.slider-track {
+  display: inline-block;
+  animation: scroll-left 20s linear infinite;
+}
+
+.slider-item {
+  display: inline-block;
+  padding: 0 20px;
+  cursor: default;
+}
+
+.clickable {
+  cursor: pointer;
+  color: #0073e6;
+  transition: color 0.3s;
+}
+
+.clickable:hover {
+  color: #005763;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

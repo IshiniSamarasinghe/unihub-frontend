@@ -53,7 +53,8 @@ function SignIn() {
     return (
         <div className="signin-container">
             <div className="signin-left">
-                <h1 className="logo">UniHub</h1>
+                <img src="/react/assets/logo.png" alt="UniHub Logo" className="signin-logo" />
+
                 <p className="welcome-text">Nice to see you again!</p>
                <img src={process.env.PUBLIC_URL + '/assets/signin-img.png'} alt="Illustration" className="signin-illustration" />
 
@@ -96,18 +97,21 @@ function SignIn() {
                         </span>
                     </div>
 
-                    <div className="signin-options">
-                        <label className="remember-me">
-                            <input
-                                type="checkbox"
-                                name="remember"
-                                checked={formData.remember}
-                                onChange={handleChange}
-                            />
-                            Remember me
-                        </label>
-                        <a href="/" onClick={(e) => e.preventDefault()}>Forgot password?</a>
-                    </div>
+                 <div className="signin-options">
+  <label className="remember-me">
+    <input
+      type="checkbox"
+      name="remember"
+      checked={formData.remember}
+      onChange={handleChange}
+    />
+    Remember me
+  </label>
+  <div className="forgot-password">
+    <a href="/" onClick={(e) => e.preventDefault()}>Forgot password?</a>
+  </div>
+</div>
+
 
                     <button type="submit" className="signin-btn" disabled={status === 'loading'}>
                         {status === 'loading' ? 'Signing in...' : 'Sign in'}

@@ -11,9 +11,9 @@ import SignIn from './pages/SignIn';
 import CreateEvent from './pages/CreateEvent';
 import Store from './pages/Store';
 import CalendarPage from './pages/CalendarPage';
-import './App.css';
 import MyEvents from './pages/MyEvents';
-
+import TopSlider from './components/TopSlider';
+import './App.css';
  
 
 import { useEffect } from 'react';
@@ -43,7 +43,12 @@ function LayoutWrapper({ children }) {
 
   return (
     <>
-      {!hideLayout && <Navbar />}
+      {!hideLayout && (
+        <>
+          <TopSlider />   {/* ✅ Top slider above navbar */}
+          <Navbar />
+        </>
+      )}
       {children}
       {!hideLayout && <Footer />}
     </>
@@ -109,7 +114,7 @@ function App() {
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/test-notification" element={<TestNotification />} />
           <Route path="/my-events" element={<MyEvents />} />
-
+         
 
           {/* Admin pages */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
