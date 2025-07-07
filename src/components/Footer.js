@@ -1,7 +1,6 @@
-// ✅ Footer.js – Responsive footer with branding, links, and subscription
-
 import React from 'react';
 import './Footer.css';
+ 
 
 function Footer() {
   return (
@@ -9,7 +8,7 @@ function Footer() {
       <div className="footer-top">
         {/* UniHub Branding */}
         <div className="footer-column">
-          <h3 className="footer-title">UniHub</h3>
+          <img src='/react/assets/logo.png' alt="UniHub Logo" className="footer-logo" />
           <p className="footer-description">
             UniHub is your all-in-one platform to discover, share, and manage university events.
             Stay connected, get involved, and make the most of your campus life.

@@ -85,7 +85,7 @@ function CreateEvent() {
       </div>
 
       <div className="create-right">
-        <h1 className="logo">UniHub</h1>
+        <img src='/react/assets/logo1.png' alt="UniHub Logo" className="event-logo" />
         <p className="subtitle">Welcome to UniHub! Create events and share with your peers!</p>
 
         {userType === 'normal_user' ? (

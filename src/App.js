@@ -12,7 +12,8 @@ import CreateEvent from './pages/CreateEvent';
 import Store from './pages/Store';
 import CalendarPage from './pages/CalendarPage';
 import './App.css';
- 
+import MyEvents from './pages/MyEvents';
+
  
 
 import { useEffect } from 'react';
@@ -107,6 +108,8 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/test-notification" element={<TestNotification />} />
+          <Route path="/my-events" element={<MyEvents />} />
+
 
           {/* Admin pages */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

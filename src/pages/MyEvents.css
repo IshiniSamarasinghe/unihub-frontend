@@ -1,0 +1,63 @@
+.my-events-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-events-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* NEW: Grid wrapper for cards */
+.my-event-grid {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.my-event-card {
+  flex: 1 1 calc(50% - 20px);
+  /* Two cards per row */
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Image inside card */
+.my-event-card img {
+  width: 50%;
+  max-width: 50%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.my-event-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.my-event-actions button {
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid red;
+  color: black;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+/* Optional: stack 1 per row on small screens */
+@media (max-width: 768px) {
+  .my-event-card {
+    flex: 1 1 100%;
+  }
+}

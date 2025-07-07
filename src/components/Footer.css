@@ -8,11 +8,21 @@
   font-family: Poppins, sans-serif;
 }
 
+.footer-logo {
+  width: 140px; /* adjust as needed */
+  height: auto;
+  margin-bottom: 12px;
+  display: block;
+  margin-left: -20px;
+}
+
+
 .footer-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
+ 
 }
 
 .footer-column {
@@ -42,6 +52,7 @@
   line-height: 1.6;
   max-width: 300px;
   font-family: Poppins;
+  margin-top: -8px;
 }
 
 .footer-links {

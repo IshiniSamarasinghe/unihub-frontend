@@ -56,6 +56,7 @@ function AdminUsers() {
         <table>
           <thead>
             <tr>
+              <th>id</th>
               <th>Name</th>
               <th>University Email</th>
               <th>Phone</th>
@@ -68,6 +69,7 @@ function AdminUsers() {
           <tbody>
             {Array.isArray(users) && users.map((user) => (
               <tr key={user.id}>
+                <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>

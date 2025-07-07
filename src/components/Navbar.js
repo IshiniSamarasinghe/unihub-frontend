@@ -3,6 +3,16 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { FaStore, FaBell, FaBars, FaTimes } from 'react-icons/fa';
 import NotificationToggle from './NotificationToggle';
+import { FaUserCircle, FaCalendarCheck } from 'react-icons/fa';
+
+
+
+
+<a href="/my-events" className="nav-link">
+  <FaCalendarCheck style={{ marginRight: '6px' }} />
+  My-Events
+</a>
+
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -25,6 +35,13 @@ function Navbar() {
           <a href="/events" className="nav-link">Events</a>
           <a href="/about" className="nav-link">About</a>
           <a href="/calendar" className="nav-link">Calendar</a>
+          <a href="/my-events" className="nav-link">
+            <FaUserCircle style={{ marginRight: '6px' }} />
+            My-Events
+          </a>
+
+
+
         </div>
 
         <div className="navbar-right">
