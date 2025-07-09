@@ -7,6 +7,8 @@ import SearchBar from '../components/SearchBar';
 import EventGrid from '../components/EventGrid';
 import EventPromo from '../components/EventPromo';
 import axios from '../axios';
+import HoverSidebar from '../components/HoverSidebar';
+
 
 function Home() {
   const [allEvents, setAllEvents] = useState([]);
@@ -61,6 +63,7 @@ function Home() {
 
   return (
     <>
+      <HoverSidebar />
       <Hero />
       <UniversityLogos />
       <FilterSection onFilter={handleFilter} onClear={handleClear} />

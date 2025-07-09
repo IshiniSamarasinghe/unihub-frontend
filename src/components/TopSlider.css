@@ -21,8 +21,9 @@
 
 .clickable {
   cursor: pointer;
-  color: #0073e6;
+  color: #000000;
   transition: color 0.3s;
+  text-decoration: none;
 }
 
 .clickable:hover {
