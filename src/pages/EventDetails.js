@@ -3,17 +3,27 @@ import { useParams } from 'react-router-dom';
 import './EventDetails.css';
 import axios from '../axios';
 import PastEventSlider from '../components/PastEventSlider';
+import EventMediaUpload from '../components/EventMediaUpload';
+import EventGallery from '../components/EventGallery';
 import {
   FaCalendarAlt, FaUniversity, FaClock, FaMapMarkerAlt,
   FaUsers, FaTag, FaLaptopCode, FaBook
 } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
+
 function EventDetails() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
   const [relatedEvents, setRelatedEvents] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios.get('/user')
+      .then(res => setUser(res.data))
+      .catch(err => console.error("❌ Failed to fetch user info:", err));
+  }, []);
 
   useEffect(() => {
     axios.get(`/events/${id}`)
@@ -21,7 +31,7 @@ function EventDetails() {
         const mainEvent = response.data;
         setEvent(mainEvent);
 
-        const keyword = mainEvent.name.split(' ')[0]; // Series keyword
+        const keyword = mainEvent.name.split(' ')[0];
         axios
           .get(`/events/past-series?name=${keyword}&excludeId=${mainEvent.id}`)
           .then(res => setRelatedEvents(res.data))
@@ -52,7 +62,7 @@ function EventDetails() {
     const [hour, minute] = timeString.split(':');
     const h = parseInt(hour, 10);
     const suffix = h >= 12 ? 'PM' : 'AM';
-    const formattedHour = ((h + 11) % 12 + 1); // 0–23 to 1–12
+    const formattedHour = ((h + 11) % 12 + 1);
     return `${formattedHour}:${minute} ${suffix}`;
   };
 
@@ -111,6 +121,13 @@ function EventDetails() {
       </div>
 
       <PastEventSlider events={relatedEvents} />
+
+      {user?.user_type === 'super_user' && (
+        <EventMediaUpload eventId={event.id} />
+      )}
+
+      {/* ✅ Show uploaded media gallery */}
+      <EventGallery eventId={event.id} />
     </>
   );
 }

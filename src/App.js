@@ -32,6 +32,8 @@ import AdminLogin from './components/AdminLogin';
 import AdminChangePassword from './components/AdminChangePassword';
 import AdminStore from './components/AdminStore';
 import AdminRejectedApprovals from './components/AdminRejectedApprovals';
+import AdminSignUp from './components/AdminSignUp';
+
 
 // Test FCM
 import TestNotification from './pages/TestNotification';
@@ -127,6 +129,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/change-password" element={<AdminChangePassword />} />
           <Route path="/admin/store" element={<AdminStore />} />
+          <Route path="/admin/register" element={<AdminSignUp />} />
         </Routes>
       </LayoutWrapper>
     </BrowserRouter>

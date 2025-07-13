@@ -1,0 +1,99 @@
+.upload-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem; /* 👈 Add this line */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Poppins;
+}
+
+
+.upload-box h3 {
+  color: #000000;
+  font-size: 18px;
+  margin-bottom: 0.75rem;
+  font-family: Poppins;
+}
+
+.upload-box p {
+  font-size: 12px;
+  margin-bottom: 1.5rem;
+  color: #444;
+  font-family: Poppins;
+}
+
+.upload-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.upload-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-group label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-family: Poppins;
+}
+
+.upload-group input[type="file"] {
+  padding: 0.4rem;
+  border: 1px dashed #aaa;
+  border-radius: 6px;
+  width: 220px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.upload-group input[type="file"]:hover {
+  border-color: #005763;
+}
+
+.upload-btn {
+  padding: 0.6rem 1.5rem;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.upload-btn:hover {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: green;
+  text-align: center;
+  font-weight: regular;
+  font-size: 9px;
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: red;
+  text-align: center;
+  font-weight: regular;
+  font-size: 9px;
+}

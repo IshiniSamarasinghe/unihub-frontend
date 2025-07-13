@@ -1,53 +1,88 @@
 import React, { useState } from 'react';
 import './AdminLogin.css';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
+import axios from '../axios';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // ✅ Import icons
 
 function AdminLogin() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-    const handleLogin = (e) => {
-        e.preventDefault();
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
-        // Simple mock login logic (replace with backend call later)
-        if (email === 'admin@unihub.lk' && password === 'admin123') {
-            navigate('/admin/dashboard');
-        } else {
-            alert('Invalid credentials!');
-        }
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    return (
-        <div className="admin-login-container">
-            <div className="login-box">
-                <h1>UniHub</h1>
-                <h2>Admin Login</h2>
-                <form onSubmit={handleLogin}>
-                    <input
-                        type="email"
-                        placeholder="Email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <p className="forgot-password-link">
-                        <Link to="/admin/change-password">Forgot Password?</Link>
-                    </p>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        </div>
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post('/admin/login', formData);
+      alert('✅ Login successful!');
+      window.location.href = '/admin/dashboard';
+    } catch (err) {
+      console.error(err);
+      setError('Invalid email or password');
+    }
+  };
+
+  return (
+    <div className="admin-login-container">
+      <div className="login-box">
+        <img
+          src="/react/assets/logo1.png"
+          alt="UniHub Logo"
+          style={{ width: '120px', marginBottom: '10px' }}
+        />
+        <h2>Admin Login</h2>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+
+          <div style={{ position: 'relative' }}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                cursor: 'pointer',
+                fontSize: '18px',
+                color: '#005763',
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
+          {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
+
+          <button type="submit">Login</button>
+        </form>
+
+        <p className="forgot-password-link">Forgot Password?</p>
+      </div>
+    </div>
+  );
 }
 
 export default AdminLogin;

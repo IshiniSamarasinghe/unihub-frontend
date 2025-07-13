@@ -1,46 +1,48 @@
-/* ✅ UniversityLogos.css */
-
-.university-logos-wrapper {
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
   padding: 2rem 0;
-  text-align: center;
+  background-color: #ffffff;
 }
 
-.university-logos-grid {
+.marquee {
+  display: inline-flex;
+  animation: scrollMarquee 70s linear infinite;
+}
+
+.logo-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
   padding: 0 2rem;
 }
 
-.university-logo-item {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.university-logo-img {
+.logo-slide img {
   max-height: 60px;
-  max-width: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-.university-logo-img:hover {
+.logo-slide img:hover {
   transform: scale(1.1);
 }
 
-/* 📱 Mobile tweak if needed */
+@keyframes scrollMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 📱 Mobile responsiveness */
 @media (max-width: 480px) {
-  .university-logo-item {
-    width: 60px;
-    height: 60px;
+  .logo-slide {
+    padding: 0 1rem;
   }
 
-  .university-logo-img {
-    max-height: 50px;
+  .logo-slide img {
+    max-height: 45px;
   }
 }
