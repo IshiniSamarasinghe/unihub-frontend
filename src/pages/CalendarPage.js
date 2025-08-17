@@ -4,7 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 import axios from '../axios';
 import './CalendarPage.css';
 
-
 function CalendarPage() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [events, setEvents] = useState([]);
@@ -21,96 +20,109 @@ function CalendarPage() {
     };
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <h3 className="calendar-heading">
-                <span role="img" aria-label="calendar">📅</span> Event Calendar
-            </h3>
-
+        <div>
+            {/* 🔹 Hero Section (yellow heading like About page) */}
             <div
+                className="about-hero"
                 style={{
+                    backgroundColor: '#F39D0C',   // yellow
+                    height: 140,
                     display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '2rem',
-                    flexWrap: 'wrap',
-                    marginTop: '2rem',
+                    color: '#fff',
                 }}
             >
-                {/* Calendar */}
-                <div>
-                    <Calendar
-                        onChange={setSelectedDate}
-                        value={selectedDate}
-                        className="custom-calendar"
-                        tileClassName={({ date, view }) => {
-                            if (view !== 'month') return '';
+                <h1 className="about-title"> EVENT CALENDAR</h1>
+            </div>
 
-                            const formatted = date.toISOString().split('T')[0];
-                            const matchedEvent = events.find(ev => ev.date === formatted);
-                            if (!matchedEvent) return '';
+            {/* 🔹 Main Calendar Content */}
+            <div style={{ padding: '2rem' }}>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        gap: '2rem',
+                        flexWrap: 'wrap',
+                        marginTop: '2rem',
+                    }}
+                >
+                    {/* Calendar */}
+                    <div>
+                        <Calendar
+                            onChange={setSelectedDate}
+                            value={selectedDate}
+                            className="custom-calendar"
+                            tileClassName={({ date, view }) => {
+                                if (view !== 'month') return '';
 
-                            const eventDateTime = new Date(`${matchedEvent.date}T${matchedEvent.time}`);
-                            const isPast = eventDateTime < new Date();
+                                const formatted = date.toISOString().split('T')[0];
+                                const matchedEvent = events.find(ev => ev.date === formatted);
+                                if (!matchedEvent) return '';
 
-                            return isPast ? 'past-event' : 'upcoming-event';
-                        }}
-                        tileContent={({ date, view }) => {
-                            if (view !== 'month') return null;
+                                const eventDateTime = new Date(`${matchedEvent.date}T${matchedEvent.time}`);
+                                const isPast = eventDateTime < new Date();
 
-                            const formatted = date.toISOString().split('T')[0];
-                            const matchedEvent = events.find(ev => ev.date === formatted);
-                            if (!matchedEvent) return null;
+                                return isPast ? 'past-event' : 'upcoming-event';
+                            }}
+                            tileContent={({ date, view }) => {
+                                if (view !== 'month') return null;
 
-                            const eventDateTime = new Date(`${matchedEvent.date}T${matchedEvent.time}`);
-                            const isPast = eventDateTime < new Date();
+                                const formatted = date.toISOString().split('T')[0];
+                                const matchedEvent = events.find(ev => ev.date === formatted);
+                                if (!matchedEvent) return null;
 
-                            return (
-                                <div
-                                    style={{
-                                        marginTop: '2px',
-                                        width: '6px',
-                                        height: '6px',
-                                        borderRadius: '50%',
-                                        backgroundColor: isPast ? 'rgb(222, 1, 1)' : ' rgb(31, 167, 7)',  // 🎨 baby red or green
-                                        marginInline: 'auto',
-                                    }}
-                                />
-                            );
-                        }}
+                                const eventDateTime = new Date(`${matchedEvent.date}T${matchedEvent.time}`);
+                                const isPast = eventDateTime < new Date();
 
-                    />
-                </div>
-
-                {/* Events */}
-                <div style={{ maxWidth: '400px' }}>
-                    <div style={{ marginTop: '1rem' }}>
-                        {getEventsForDate(selectedDate).length > 0 ? (
-                            <>
-                                <h5>📌 Events on {selectedDate.toDateString()}</h5>
-                                {getEventsForDate(selectedDate).map(ev => (
+                                return (
                                     <div
-                                        key={ev.id}
                                         style={{
-                                            border: '1px solid #ccc',
-                                            borderRadius: '12px',
-                                            padding: '1.2rem',
-                                            marginBottom: '1rem',
-                                            background: '#f9f9f9',
-                                            boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
-                                            width: '100%',
-                                            fontSize: '15px'
+                                            marginTop: '2px',
+                                            width: '6px',
+                                            height: '6px',
+                                            borderRadius: '50%',
+                                            backgroundColor: isPast ? 'rgb(222, 1, 1)' : 'rgb(31, 167, 7)',
+                                            marginInline: 'auto',
                                         }}
-                                    >
-                                        <h5 style={{ marginBottom: '0.8rem', fontWeight: '600' }}>{ev.name}</h5>
-                                        <p><strong>⏰ Time:</strong> {ev.time}</p>
-                                        <p><strong>📍 Location:</strong> {ev.location || 'N/A'}</p>
-                                        <p><strong>🏛️ Society:</strong> {ev.society}</p>
-                                        <p><strong>🎓 University:</strong> {ev.university}</p>
-                                    </div>
-                                ))}
-                            </>
-                        ) : (
-                            <p className='warning'>No events on this date.</p>
-                        )}
+                                    />
+                                );
+                            }}
+                        />
+                    </div>
+
+                    {/* Events */}
+                    <div style={{ maxWidth: '400px' }}>
+                        <div style={{ marginTop: '1rem' }}>
+                            {getEventsForDate(selectedDate).length > 0 ? (
+                                <>
+                                    <h5>📌 Events on {selectedDate.toDateString()}</h5>
+                                    {getEventsForDate(selectedDate).map(ev => (
+                                        <div
+                                            key={ev.id}
+                                            style={{
+                                                border: '1px solid #ccc',
+                                                borderRadius: '12px',
+                                                padding: '1.2rem',
+                                                marginBottom: '1rem',
+                                                background: '#f9f9f9',
+                                                boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+                                                width: '100%',
+                                                fontSize: '12px'
+                                            }}
+                                        >
+                                            <h5 style={{ marginBottom: '0.8rem', fontWeight: '600' }}>{ev.name}</h5>
+                                            <p><strong>⏰ Time:</strong> {ev.time}</p>
+                                            <p><strong>📍 Location:</strong> {ev.location || 'N/A'}</p>
+                                            <p><strong>🏛️ Society:</strong> {ev.society}</p>
+                                            <p><strong>🎓 University:</strong> {ev.university}</p>
+                                        </div>
+                                    ))}
+                                </>
+                            ) : (
+                                <p className='warning'>No events on this date.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

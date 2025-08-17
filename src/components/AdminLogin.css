@@ -24,7 +24,7 @@
 
 .login-box h2 {
   margin-top: -20px;
-  color: #005763;
+  color: #0C1D36;
   font-size: 15px;
   margin-left: -10px;
 }
@@ -39,7 +39,7 @@
 }
 
 .login-box button {
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
   border: none;
   padding: 0.7rem;
@@ -51,7 +51,7 @@
 }
 
 .login-box button:hover {
-  background-color: #005763;
+  background-color: #0C1D36;
 }
 
 .forgot-password-link {
@@ -60,7 +60,7 @@
 }
 
 .forgot-password-link a {
-  color: #005763;
+  color: #0C1D36;
   text-decoration: none;
 }
 
@@ -71,7 +71,7 @@
 .text-button {
   background: none;
   border: none;
-  color: #005763;
+  color: #0C1D36;
   font-size: 12px;
   cursor: pointer;
   text-decoration: underline;

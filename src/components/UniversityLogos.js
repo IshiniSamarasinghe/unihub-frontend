@@ -1,5 +1,3 @@
-// src/components/UniversityLogos.js
-
 import React from 'react';
 import './UniversityLogos.css';
 

@@ -4,7 +4,7 @@
   background-position: center;
   padding: 4rem 2rem;
   text-align: center;
-  color: #000000;
+  color: #ffffff;
 }
 
 
@@ -23,10 +23,10 @@
 }
 
 .view-past-button {
-  background-color: #FDEBDA;
+  background-color: #F59E0B;
   color: black;
   border: none;
-  padding: 0.6rem 1.5rem;
+  padding: 0.8rem 0.8rem;
   font-size: 12px;
   border-radius: 5px;
   cursor: pointer;

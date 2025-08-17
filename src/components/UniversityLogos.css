@@ -1,48 +1,46 @@
 .marquee-wrapper {
   overflow: hidden;
   white-space: nowrap;
-  padding: 2rem 0;
-  background-color: #ffffff;
+  padding: 1.5rem 0;        /* reduce top/bottom padding if you like */
+  background: #fff;
 }
 
+/* Scrolling row */
 .marquee {
   display: inline-flex;
   animation: scrollMarquee 70s linear infinite;
+  gap: 1.5rem;               /* consistent space between slides */
 }
 
+/* Make every slide the same width so spacing looks even */
 .logo-slide {
+  flex: 0 0 140px;           /* ← equal slide width */
+  height: 120px;             /* visual row height */
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  justify-content: center;
 }
 
-.logo-slide img {
-  max-height: 60px;
+/* Consistent logo size */
+.logo-slide > img {
+  display: block;
+  max-height: 100px;         /* logo height cap inside the 120px row */
+  width: auto;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
-.logo-slide img:hover {
-  transform: scale(1.1);
-}
+.logo-slide > img:hover { transform: scale(1.06); }
 
+/* Animation */
 @keyframes scrollMarquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-/* 📱 Mobile responsiveness */
+/* Mobile */
 @media (max-width: 480px) {
-  .logo-slide {
-    padding: 0 1rem;
-  }
-
-  .logo-slide img {
-    max-height: 45px;
-  }
+  .marquee { gap: 1rem; }
+  .logo-slide { flex-basis: 110px; height: 90px; }
+  .logo-slide > img { max-height: 70px; }
 }

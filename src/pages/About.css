@@ -17,7 +17,7 @@
 .about-hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
-  color: #000000;
+  color: #ffffff;
   text-align: left;
   width: 100%;
   padding-left: 3rem;
@@ -84,7 +84,7 @@
 }
 
 .orange-button:hover {
-  background-color: #FDEBDA;
+  background-color: #F59E0B;
   color: #000000;
   transition: 0.3s;
   border: white;

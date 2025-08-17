@@ -1,81 +1,58 @@
-import React from 'react';
-import './Hero.css';
+import React from "react";
+import "./Hero.css";
 
-function Hero() {
+export default function Hero() {
+  const bg = `${process.env.PUBLIC_URL}/assets/hero-image2.png`;
+
   const handleScroll = () => {
-    const section = document.getElementById('event-section');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById("event-section");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section
-      style={{
-        backgroundImage: "url('/react/assets/hero-image2.png')",
-        backgroundSize: 'cover',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        backgroundPosition: 'center',
-        height: '60vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        color: 'black',
-        textAlign: 'center',
-        padding: '0 1rem',
-      }}
-    >
-      <h1
-        style={{
-          fontSize: '28px',
-          marginBottom: '0.4rem',
-          marginTop: '0.1rem',
-          fontFamily: 'Playfair Display, serif',
-          fontWeight: 'normal',
-        }}
-      >
-        Welcome to UniHub<br />Your Campus, Connected.
-      </h1>
+    <section className="hero hero--template">
+      <div className="hero__container">
+        {/* Left: dark panel */}
+        <div className="hero__left">
+          <span className="hero__eyebrow">Welcome to UniHub</span>
 
-      <p
-        style={{
-          fontSize: '0.7rem',
-          maxWidth: '700px',
-          marginBottom: '1.5rem',
-          marginTop: '0.1rem',
-        }}
-      >
-        Discover, explore, and engage with the latest events at your university. Whether you're looking to attend workshops, join club meetups, or showcase your own events, UniHub brings everything to one place — built just for students like you.
-      </p>
+          <h1 className="hero__headline">
+            Create, Share, and Grow <span className="marker">Your Campus Community</span>
+              
+          </h1>
 
-      <button
-        style={{
-          backgroundColor: '#fff',
-          color: '#000',
-          padding: '0.5rem 1rem',
-          borderRadius: '5px',
-          fontWeight: 'regular',
-          border: 'none',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease',
-          fontSize: '12px',
-          fontFamily: 'Poppins, sans-serif',
-        }}
-        onClick={handleScroll}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = '#FDEBDA';
-          e.target.style.color = '#000';
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor = '#fff';
-          e.target.style.color = '#000';
-        }}
-      >
-        Explore Events
-      </button>
+          <p className="hero__lead">
+            Discover workshops, club meetups, and university events in one place.
+            Submit your own events and manage approvals with a click.
+          </p>
+
+          <div className="hero__actions">
+            <button className="btn btn--amber" onClick={handleScroll}>
+              Get Started
+            </button>
+            
+          </div>
+
+          <ul className="hero__ticks">
+            <li>✓ Email approval links</li>
+            <li>✓ Media gallery per event</li>
+            <li>✓ Smart reminders</li>
+          </ul>
+        </div>
+
+        {/* Right: image */}
+        <div className="hero__right">
+          <div
+            className="hero__img"
+            style={{ backgroundImage: `url(${bg})` }}
+            aria-label="Students celebrating graduation"
+            role="img"
+          />
+          <button className="play-btn" aria-label="Watch tour">
+            <span className="play-triangle" />
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
-
-export default Hero;

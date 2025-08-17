@@ -10,7 +10,7 @@
 /* Sidebar */
 .admin-sidebar {
   width: 230px;
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@
 }
 
 .menu-item.active {
-  background-color: #FDEBDA;
+  background-color: #F59E0B;
   font-weight: 500;
   height: 36px;
   color: #000000;
@@ -203,7 +203,7 @@
 }
 
 .dashboard-card.active {
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
 }
 

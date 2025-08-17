@@ -34,7 +34,7 @@
 }
 
 .buy-btn {
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
@@ -112,7 +112,7 @@
 
 .add-item-btn {
   padding: 0.5rem 1.1rem;
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
   border: none;
   border-radius: 5px;
@@ -141,7 +141,7 @@
 }
 
 .add-item-form button {
-  background-color: #005763;
+  background-color: #0C1D36;
   color: white;
   padding: 0.6rem 1rem;
   border: none;

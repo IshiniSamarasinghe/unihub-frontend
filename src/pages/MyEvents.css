@@ -4,33 +4,37 @@
 }
 
 .my-events-heading {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* NEW: Grid wrapper for cards */
+/* Grid wrapper for cards */
 .my-event-grid {
-  display: flex;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: left; 
+  font-size: 11px;  /* center the cards */
 }
 
 .my-event-card {
-  flex: 1 1 calc(50% - 20px);
-  /* Two cards per row */
+  flex: 1 1 280px;           /* min width for cards */
+  max-width: 320px;          /* cap width so they don’t stretch too much */
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
   background-color: #fdfdfd;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: left;        /* center text and image */
+  font-size: 11px;
 }
 
 /* Image inside card */
 .my-event-card img {
-  width: 50%;
-  max-width: 50%;
+  width: 100%;               /* make image fit card */
+  max-height: 200px;         /* keep images smaller */
+  object-fit: cover;         /* crop nicely */
   border-radius: 4px;
   margin-bottom: 10px;
 }
@@ -38,12 +42,13 @@
 .my-event-actions {
   margin-top: 12px;
   display: flex;
+  justify-content: left;   /* center buttons */
   gap: 10px;
 }
 
 .my-event-actions button {
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
   border-radius: 4px;
   border: 1px solid red;
@@ -51,13 +56,15 @@
 }
 
 .delete-btn:hover {
-  background-color: #d32f2f;
-  color: white;
+  background-color: #ffffff;
+  color: red;
+  border: 1px solid red;
 }
 
-/* Optional: stack 1 per row on small screens */
+/* Responsive: stack cards 1 per row on small screens */
 @media (max-width: 768px) {
   .my-event-card {
     flex: 1 1 100%;
+    max-width: 100%;
   }
 }

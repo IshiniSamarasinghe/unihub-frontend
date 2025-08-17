@@ -61,13 +61,12 @@ function UpcomingEvents() {
       <div
         className="events-hero"
         style={{
-          backgroundImage: "url('/assets/hero-image2.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: '10px',
+          backgroundColor: '#F39D0C',   // solid color
+          height: 140,                  // number = px
           display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
+          alignItems: 'left',
+          justifyContent: 'left',
+          color: '#fff',
         }}
       >
         <h1 className="events-heading"

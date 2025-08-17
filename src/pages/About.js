@@ -11,14 +11,13 @@ function About() {
             <div
                 className="about-hero"
                 style={{
-                    backgroundImage: "url('/react/assets/hero-image2.png')",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: '140px',
+
+                    backgroundColor: '#F39D0C',   // solid color
+                    height: 140,                  // number = px
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#000',
+                    color: '#fff',
                 }}
             >
                 <h1 className="about-title">ABOUT US</h1>
@@ -57,8 +56,8 @@ function About() {
                         To create a centralized, student-friendly platform for discovering, managing,
                         and sharing university events — with real-time updates and easy access for all.
                     </p>
-                    <Link to="/create-event"> 
-                    <button className="orange-button">Create Event</button>
+                    <Link to="/create-event">
+                        <button className="orange-button">Create Event</button>
                     </Link>
                 </div>
             </section>

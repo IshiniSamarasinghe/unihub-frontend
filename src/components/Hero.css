@@ -1,22 +1,159 @@
-
-/* 📱 Mobile styles */
-@media (max-width: 768px) {
-  .hero-section {
-    height: auto;
-    padding: 2rem 1rem;
-  }
-
-  .hero-title {
-    font-size: 1.5rem;
-  }
-
-  .hero-subtext {
-    font-size: 0.8rem;
-    padding: 0 0.5rem;
-  }
-
-  .hero-button {
-    font-size: 14px;
-    padding: 0.6rem 1.2rem;
-  }
+:root{
+  --brand:#0C1D36;               /* UniHub teal */
+  --ink:#0c1d36;                 /* deep navy */
+  --accent:#f59e0b;              /* amber CTA */
+  --text:#0f172a;
+  --muted:#475569;
+  --radius:24px;
+  --shadow:0 18px 40px rgba(2,12,27,.12);
+  --hero-h: clamp(440px, 48vw, 560px); /* equal height desktop */
 }
+
+/* SECTION (no white/gray background) */
+.hero--template{
+  background: transparent;                    /* removed white bg */
+              
+}
+
+/* GRID */
+.hero__container{
+  width:100%;
+  max-width:none;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  align-items:stretch;  
+  margin-top: -40px;                      
+}
+
+/* LEFT: dark panel */
+.hero__left{
+  background: var(--ink);
+  color:#fff;
+   
+  box-shadow: var(--shadow);
+  padding: clamp(22px,3.6vw,36px);
+  height: var(--hero-h);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* (Optional subtle texture) — comment out to be perfectly flat */
+/*
+.hero__left::after{
+  content:"";
+  position:absolute; inset:-30% -10% auto -10%;
+  height:70%;
+  background: radial-gradient(60% 60% at 20% 20%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events:none;
+}
+*/
+
+/* Eyebrow pill */
+.hero__eyebrow{
+  display:inline-block;
+  font-size:12px; letter-spacing:.4px;
+  color:#1f2937;
+  background:#ffffff;
+  padding:10px 10px; border-radius:5px;
+  width:max-content;
+}
+
+/* Headline + accent marker */
+.hero__headline{
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: clamp(28px,4.6vw,46px);
+  line-height:1.15;
+  margin:6px 0 6px;
+}
+.marker{
+  position:relative; color:#fff;
+}
+.marker::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:4px; height:12px;
+  background: linear-gradient(90deg, var(--accent), #f97316);
+  z-index:-1; border-radius:6px;
+}
+
+.hero__lead{
+  color:#e8edf5;
+  font-size:15px; line-height:1.7;
+  margin-top:2px;
+}
+
+/* Buttons */
+.hero__actions{ display:flex; gap:12px; margin-top:4px; }
+.btn{
+  appearance:none; border:none; cursor:pointer; font-weight:700;
+  border-radius:5px; padding:12px 18px; line-height:1;
+}
+.btn--amber{ background:var(--accent); color:#ffffff; box-shadow: 0 10px 20px rgba(245,158,11,.25); }
+.btn--amber:hover{ filter:brightness(1.05); }
+.btn--ghost{ background:transparent; color:#fff; }
+.btn--ghost:hover{ background:#ffffff0f; }
+
+.hero__ticks{
+  margin:8px 0 0; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:10px 18px;
+  color:#dbe7f3; font-size:13px;
+}
+
+/* RIGHT: image pane */
+.hero__right{
+  position:relative;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  height: var(--hero-h);
+  background:#0b1220;
+}
+.hero__img{
+  position:absolute; inset:0;
+  background-size:cover;
+  background-position:center 40%;
+  filter:saturate(1.05) contrast(1.02);
+}
+/* subtle L→R gradient on photo to echo template */
+.hero__right::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(12,29,54,.55), rgba(12,29,54,0) 45%);
+  pointer-events:none;
+}
+
+/* Round play button */
+ 
+
+/* RESPONSIVE */
+@media (max-width: 900px){
+  .hero__container{ grid-template-columns:1fr; }
+  .hero__left, .hero__right{ height:auto; }
+  .hero__right{ min-height: 260px; order:-1; }
+}
+
+/* make padding count inside the height */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* enforce same height for both columns */
+.hero__container { align-items: stretch; }
+
+.hero__left,
+.hero__right {
+  height: var(--hero-h);        /* they’ll now be identical */
+  box-sizing: border-box;       /* padding won't inflate height */
+  overflow: hidden;
+}
+
+/* (optional) avoid extra bottom gap from last child margins */
+.hero__left > *:last-child { margin-bottom: 0; }
+
+/* mobile: let them grow naturally */
+@media (max-width: 900px){
+  .hero__left, .hero__right { height: auto; }
+}
+

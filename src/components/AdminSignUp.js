@@ -93,7 +93,7 @@ function AdminSignUp() {
                 transform: 'translateY(-50%)',
                 cursor: 'pointer',
                 fontSize: '18px',
-                color: '#005763',
+                color: '#0C1D36',
               }}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -118,7 +118,7 @@ function AdminSignUp() {
                 transform: 'translateY(-50%)',
                 cursor: 'pointer',
                 fontSize: '18px',
-                color: '#005763',
+                color: '#0C1D36',
               }}
             >
               {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}

@@ -67,7 +67,7 @@ function AdminLogin() {
                 transform: 'translateY(-50%)',
                 cursor: 'pointer',
                 fontSize: '18px',
-                color: '#005763',
+                color: '#0C1D36',
               }}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
