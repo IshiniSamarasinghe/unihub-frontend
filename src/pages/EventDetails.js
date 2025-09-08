@@ -74,14 +74,11 @@ function EventDetails() {
         <div
           className="event-header"
           style={{
-            backgroundImage: "url('/react/assets/hero-image2.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            height: '100px',
+            backgroundColor: '#F39D0C',
+            height: 120,
             display: 'flex',
             alignItems: 'center',
-            paddingLeft: '3rem',
-            color: '#1a1a1a'
+            color: '#fff',
           }}
         >
           <h1>{event.name}</h1>

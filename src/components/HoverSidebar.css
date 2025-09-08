@@ -1,21 +1,33 @@
-/* src/components/HoverSidebar.css */
+/* 🟩 Trigger area to activate the sidebar */
+.hover-sidebar-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px; /* Thin invisible area to detect hover */
+  height: 100vh;
+  z-index: 1100; /* Ensure it stays above the Hero section */
+}
+
+/* 🟦 Sidebar panel */
 .hover-sidebar {
   position: fixed;
   top: 0;
-  left: -180px; /* initially hidden */
+  left: -150px; /* hidden by default */
   width: 150px;
   height: 100vh;
   background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  color: #000000;
   padding: 2rem 1rem;
   transition: left 0.3s ease;
-  z-index: 1000;
+  z-index: 1200; /* Ensure it's on top */
 }
 
-.hover-sidebar:hover {
+/* 🟨 Show sidebar when hovering over trigger */
+.hover-sidebar-trigger:hover .hover-sidebar {
   left: 0;
 }
 
+/* 🟪 Navigation links */
 .hover-sidebar nav {
   display: flex;
   flex-direction: column;
@@ -23,7 +35,7 @@
 }
 
 .hover-sidebar nav a {
-  color: rgb(0, 0, 0);
+  color: #000000;
   text-decoration: none;
   font-size: 10px;
   padding: 0.3rem 0.5rem;
@@ -32,19 +44,21 @@
 }
 
 .hover-sidebar nav a:hover {
-  background-color: #007b8a;
+  background-color: #0C1D36;
   color: white;
 }
+
+/* 🟥 Footer section */
 .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-version {
   text-align: center;
   margin-top: -30px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 12px;
 }
 
@@ -59,8 +73,9 @@
   font-size: 11px;
   margin-top: 0.25rem;
   opacity: 0.6;
-color: #000000;
+  color: #000000;
 }
-.bar{
-    margin-top: 80px;
+
+.bar {
+  margin-top: 80px;
 }

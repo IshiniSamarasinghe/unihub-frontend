@@ -39,15 +39,12 @@ function PastEvents() {
       <div
         className="events-hero"
         style={{
-          backgroundImage: "url('/react/assets/hero-image2.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: '10px',
+          backgroundColor: '#F39D0C',   // solid color
+          height: 120,                  // number = px
           display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          paddingLeft: '3rem',
-          color: '#1a1a1a'
+          alignItems: 'left',
+          justifyContent: 'left',
+          color: '#fff',
         }}
       >
         <h1 style={{

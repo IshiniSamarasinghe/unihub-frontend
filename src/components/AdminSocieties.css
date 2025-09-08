@@ -1,3 +1,4 @@
+/* Scope all styles to this page */
 .society-management {
   font-family: 'Poppins', sans-serif;
   margin-top: 2rem;
@@ -5,79 +6,157 @@
 
 .society-management h3 {
   margin-bottom: 1rem;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-table {
+.society-management .toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.society-management .reload-btn,
+.society-management .export-btn {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.society-management .export-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.society-management .info { font-size: 13px; color: #374151; }
+.society-management .error { font-size: 13px; color: #d32f2f; }
+
+/* Table */
+.society-management .society-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  background-color: white;
-  border-radius: 6px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-th, td {
+.society-management .society-table th,
+.society-management .society-table td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: top;
 }
 
-.edit-btn2, .delete-btn2 {
-  background: none;
+.society-management .society-table thead th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Action buttons */
+.society-management .edit-btn2,
+.society-management .delete-btn2 {
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
-  color: #ffffff;
-  transition: color 0.3s ease;
- 
-  padding: 0.4rem 0.6rem;
-  margin-right: 0.5rem;
-  border-radius: 5px;
- 
-}
-
-.edit-btn2:hover {
-  background-color: #000000;
-}
-
-.edit-btn2{
-  background-color: #f0ad4e;
-}
-
-.delete-btn2:hover {
-  background-color: rgb(0, 0, 0);
-}
-
-.delete-btn2{
-  background-color: #d9534f;
-}
-
-.menu-item:hover {
-  background-color: #f0f0f0;
-}
-
-.menu-item.active {
-  background-color: #ead8b1;
-  font-weight: 500;
-  height: 30px;
-  color: #000000;
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  color: white;
-  text-align: left;
-  padding: 0.6rem 0.8rem;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
-  display: flex;
+  font-size: 12px;
+  padding: 8px 10px;
+  margin-right: 6px;
+  border-radius: 6px;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
+  color: #fff;
+  transition: background-color 0.2s ease, transform 0.05s ease;
 }
-.logout-btn:hover {
-  background-color: rgba(255,255,255,0.1);
+
+.society-management .edit-btn2 { background-color: #f0ad4e; }
+.society-management .edit-btn2:hover { background-color: #c4893f; }
+.society-management .delete-btn2 { background-color: #d9534f; }
+.society-management .delete-btn2:hover { background-color: #b64542; }
+.society-management .edit-btn2:active,
+.society-management .delete-btn2:active { transform: translateY(1px); }
+
+/* Modal */
+.society-management .modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9990;
+}
+
+.society-management .edit-modal {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  padding: 18px;
+}
+
+.society-management .edit-modal h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.society-management .edit-form {
+  display: grid;
+  gap: 10px;
+}
+
+.society-management .edit-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.society-management .edit-form input {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.society-management .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Reuse your existing button styles for modal actions */
+.society-management .clear-btn {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.society-management .view-all-btn {
+  background-color: #0C1D36;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .society-management .society-table {
+    font-size: 11px;
+  }
+  .society-management .edit-modal {
+    margin: 0 12px;
+    max-width: 94%;
+  }
 }

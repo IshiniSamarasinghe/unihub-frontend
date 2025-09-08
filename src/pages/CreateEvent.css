@@ -87,8 +87,8 @@ textarea {
 .create-btn {
   width: 100%;
   padding: 12px;
-  background-color: #000;
-  color: #fff;
+  background-color: #FFA60C;
+  color: #000000;
   font-weight: bold;
   border: none;
   border-radius: 5px;
@@ -99,6 +99,10 @@ textarea {
   gap: 10px;
 }
 
+.create-btn:hover{
+  background-color: #0C1D36;
+  color: white;
+}
 .create-btn:disabled {
   background-color: #555;
   cursor: not-allowed;

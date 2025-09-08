@@ -30,7 +30,6 @@
 .hero__left{
   background: var(--ink);
   color:#fff;
-   
   box-shadow: var(--shadow);
   padding: clamp(22px,3.6vw,36px);
   height: var(--hero-h);
@@ -59,7 +58,7 @@
   font-size:12px; letter-spacing:.4px;
   color:#1f2937;
   background:#ffffff;
-  padding:10px 10px; border-radius:5px;
+  padding:10px 12px; border-radius:5px;
   width:max-content;
 }
 
@@ -90,8 +89,8 @@
 /* Buttons */
 .hero__actions{ display:flex; gap:12px; margin-top:4px; }
 .btn{
-  appearance:none; border:none; cursor:pointer; font-weight:700;
-  border-radius:5px; padding:12px 18px; line-height:1;
+  appearance:none; border:none; cursor:pointer; font-weight:400;
+  border-radius:5px; padding:12px 18px; line-height:1;  font-family: 'Poppins', sans-serif;
 }
 .btn--amber{ background:var(--accent); color:#ffffff; box-shadow: 0 10px 20px rgba(245,158,11,.25); }
 .btn--amber:hover{ filter:brightness(1.05); }

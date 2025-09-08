@@ -40,10 +40,10 @@
 }
 
 .page-btn:hover {
-    background-color: #ead8b1;
+    background-color: #F39D0;
 }
 
 .page-btn.active {
-    background-color: #ead8b1;
+    background-color: #F39D0;
     font-weight: bold;
 }

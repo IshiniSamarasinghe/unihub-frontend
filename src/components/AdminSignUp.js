@@ -10,13 +10,18 @@ function AdminSignUp() {
     password: '',
     confirmPassword: '',
   });
-
+  const [avatar, setAvatar] = useState(null);            // NEW
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFile = (e) => {                            // NEW
+    const file = e.target.files?.[0];
+    setAvatar(file || null);
   };
 
   const handleSubmit = async (e) => {
@@ -28,10 +33,15 @@ function AdminSignUp() {
     }
 
     try {
-      await axios.post('/admin/register', {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
+      // Build multipart body (IMPORTANT)
+      const body = new FormData();
+      body.append('name', formData.name);
+      body.append('email', formData.email);
+      body.append('password', formData.password);
+      if (avatar) body.append('avatar', avatar);         // NEW (key: avatar)
+
+      await axios.post('/admin/register', body, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       alert('✅ Admin registered successfully!');
@@ -40,6 +50,10 @@ function AdminSignUp() {
       console.error(err);
       if (err.response?.data?.message) {
         setError(err.response.data.message);
+      } else if (err.response?.data?.errors) {
+        // show first validation error from backend
+        const first = Object.values(err.response.data.errors)[0]?.[0];
+        setError(first || 'Something went wrong. Please try again.');
       } else {
         setError('Something went wrong. Please try again.');
       }
@@ -56,7 +70,8 @@ function AdminSignUp() {
         />
         <h2>Admin Sign Up</h2>
 
-        <form onSubmit={handleSubmit}>
+        {/* NOTE: for multipart you don't need form encType when using axios + FormData, but it's fine to include */}
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             type="text"
             name="name"
@@ -74,6 +89,8 @@ function AdminSignUp() {
             onChange={handleChange}
             required
           />
+
+           
 
           <div style={{ position: 'relative' }}>
             <input
@@ -123,6 +140,17 @@ function AdminSignUp() {
             >
               {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
+
+            {/* NEW: profile image input */}
+          <label style={{ fontSize: '12px', color: '#0C1D36', marginTop: '6px' }}>
+            Profile image (JPG/PNG, max 2MB)
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            accept="image/png,image/jpeg,image/jpg"
+            onChange={handleFile}
+          />
           </div>
 
           {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}

@@ -50,7 +50,7 @@ function EventMediaUpload() {
 
   return (
     <div className="upload-box">
-      <h3>📤 Upload Event Images and Videos</h3>
+      <h3>Upload Event Images and Videos</h3>
       <p>Max size: 5MB per image, 20MB per video</p>
 
       <div className="upload-row">
