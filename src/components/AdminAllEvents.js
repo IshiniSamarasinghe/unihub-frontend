@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../axios';
 import './AdminAllEvents.css';
 import AdminLayout from './AdminLayout';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 function AdminAllEvents() {
   const [events, setEvents] = useState([]);
@@ -25,7 +26,7 @@ function AdminAllEvents() {
     if (!window.confirm('Are you sure you want to delete this event?')) return;
     try {
       await axios.delete(`/events/${id}`);
-      setEvents(events.filter(event => event.id !== id));
+      setEvents(prev => prev.filter(event => event.id !== id));
     } catch (err) {
       console.error('Failed to delete event:', err);
     }
@@ -54,7 +55,7 @@ function AdminAllEvents() {
   return (
     <AdminLayout>
       <div className="admin-all-events">
-        <h2 className='topic'>All Events</h2>
+        <h2 className="topic">All Events</h2>
         <div className="table-container">
           <table className="events-table">
             <thead>
@@ -92,8 +93,22 @@ function AdminAllEvents() {
                   <td>{event.position}</td>
                   <td>{event.approval_token}</td>
                   <td>
-                    <button onClick={() => openEditModal(event)} className="edit-btn1">✏️</button>
-                    <button onClick={() => handleDelete(event.id)} className="delete-btn1">🗑️</button>
+                    <button
+                      onClick={() => openEditModal(event)}
+                      className="icon-btn edit-btn1"
+                      aria-label="Edit"
+                      title="Edit"
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(event.id)}
+                      className="icon-btn delete-btn1"
+                      aria-label="Delete"
+                      title="Delete"
+                    >
+                      <FaTrash />
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -115,7 +130,6 @@ function AdminAllEvents() {
               <input type="text" name="location" value={editEvent.location} onChange={handleEditChange} placeholder="Location" />
               <input type="text" name="audience" value={editEvent.audience} onChange={handleEditChange} placeholder="Audience" />
               <textarea name="description" value={editEvent.description} onChange={handleEditChange} placeholder="Description" />
-
               <div className="modal-actions">
                 <button onClick={handleUpdate} className="edit-btn1">Update</button>
                 <button onClick={() => setShowEditModal(false)} className="delete-btn1">Cancel</button>

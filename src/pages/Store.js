@@ -12,6 +12,7 @@ function Store() {
     description: '',
     price: '',
     details: '',
+    end_date: '',   // ✅ NEW
     image: null
   });
 
@@ -57,6 +58,7 @@ function Store() {
     formData.append('description', formValues.description);
     formData.append('price', formValues.price);
     formData.append('details', formValues.details);
+    formData.append('end_date', formValues.end_date || ''); // ✅ NEW
     if (formValues.image) formData.append('image', formValues.image);
 
     try {
@@ -72,7 +74,10 @@ function Store() {
       setStoreItems(prev => [newItem, ...prev]);
       alert('Item submitted!');
       setShowForm(false);
-      setFormValues({ title: '', faculty: '', description: '', price: '', details: '', image: null });
+      setFormValues({
+        title: '', faculty: '', description: '', price: '',
+        details: '', end_date: '', image: null
+      });
     } catch (error) {
       console.error('Error submitting item:', error);
       alert('Failed to submit item');
@@ -99,8 +104,6 @@ function Store() {
 
       <div className="store-wrapper">
         <div className={`store-container ${selectedItem || showForm ? 'blurred' : ''}`}>
-          
-
           <div className="add-item-btn-wrapper">
             <button className="add-item-btn" onClick={() => setShowForm(true)}>
               Add Your Item +
@@ -130,6 +133,10 @@ function Store() {
               <p>{selectedItem.description}</p>
               <p>{selectedItem.price}</p>
               <p>{selectedItem.details}</p>
+              {/* ✅ Show end date if present */}
+              {selectedItem.end_date && (
+                <p><strong>End Date:</strong> {selectedItem.end_date}</p>
+              )}
             </div>
           </div>
         )}
@@ -146,6 +153,8 @@ function Store() {
                 <input type="text" name="description" placeholder="Description" value={formValues.description} onChange={handleInputChange} required />
                 <input type="text" name="price" placeholder="Price" value={formValues.price} onChange={handleInputChange} />
                 <input type="text" name="details" placeholder="WhatsApp or Contact Details" value={formValues.details} onChange={handleInputChange} required />
+                {/* ✅ NEW: End Date */}
+                <input type="date" name="end_date" value={formValues.end_date} onChange={handleInputChange} />
                 <input type="file" name="image" accept=".jpg,.jpeg,.png" onChange={handleInputChange} required />
                 <button type="submit">Submit Item</button>
               </form>

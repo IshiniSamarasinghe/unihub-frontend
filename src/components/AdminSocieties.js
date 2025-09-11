@@ -156,13 +156,14 @@ function AdminSocieties() {
                     <td>{row.whatsapp_number}</td>
                     <td>{row.email}</td>
                     <td>
-                      <button className="edit-btn2" onClick={() => handleEditClick(row)}>
-                        <FaEdit /> Edit
+                      <button className="icon-btn2" onClick={() => handleEditClick(row)} aria-label="Edit" title="Edit">
+                        <FaEdit />
                       </button>
-                      <button className="delete-btn2" onClick={() => deleteApprover(row.id)}>
-                        <FaTrash /> Delete
+                      <button className="icon-btn2" onClick={() => deleteApprover(row.id)} aria-label="Delete" title="Delete">
+                        <FaTrash />
                       </button>
                     </td>
+
                   </tr>
                 ))}
               </tbody>

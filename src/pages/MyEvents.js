@@ -1,3 +1,4 @@
+// src/pages/MyEvents.js (updated)
 import React, { useEffect, useState } from 'react';
 import axios from '../axios';
 import './MyEvents.css';
@@ -6,6 +7,9 @@ function MyEvents() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+
+  // NEW: UI filter state (all/approved/pending/rejected)
+  const [filter, setFilter] = useState('all');
 
   // ✅ Check if user is a super user based on user_type
   const isSuperUser = (user) => user?.user_type === 'super_user';
@@ -46,6 +50,29 @@ function MyEvents() {
       alert('Failed to delete event.');
     }
   };
+
+  // 🔹 Map status -> badge styles (kept inline to avoid touching your CSS too much)
+  const statusBadgeStyle = (status) => {
+    const s = String(status || '').toLowerCase();
+    const base = {
+      display: 'inline-block',
+      padding: '0.25rem 0.5rem',
+      borderRadius: '9999px',
+      fontSize: 12,
+      fontWeight: 600,
+      letterSpacing: '0.02em',
+    };
+    if (s === 'approved') return { ...base, background: '#e7f7ed', color: '#137a3a', border: '1px solid #bfe8cf' };
+    if (s === 'pending')  return { ...base, background: '#fff6e6', color: '#8b5b00', border: '1px solid #ffe0a8' };
+    if (s === 'rejected') return { ...base, background: '#fde8e8', color: '#9b1c1c', border: '1px solid #f7baba' };
+    return { ...base, background: '#eef2f7', color: '#334155', border: '1px solid #d5dbe3' }; // fallback/unknown
+  };
+
+  // 🔹 Simple client-side filter (no backend changes)
+  const filteredEvents = events.filter(ev => {
+    if (filter === 'all') return true;
+    return String(ev.status || '').toLowerCase() === filter;
+  });
 
   // ✅ Load user + events on page load
   useEffect(() => {
@@ -123,21 +150,68 @@ function MyEvents() {
       </div>
 
       <div className="my-events-container">
-      
+        {/* NEW: Status Filter Tabs */}
+        <div className="my-events-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+          {['all', 'approved', 'pending', 'rejected'].map(key => (
+            <button
+              key={key}
+              type="button"
+              className={`my-events-tab ${filter === key ? 'active' : ''}`}
+              onClick={() => setFilter(key)}
+              style={{
+                border: '1px solid #ddd',
+                background: filter === key ? '#111827' : '#fff',
+                color: filter === key ? '#fff' : '#111827',
+                padding: '0.4rem 0.8rem',
+                borderRadius: 8,
+                fontSize: 14,
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              {key === 'all' ? 'All' : key.charAt(0).toUpperCase() + key.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        {/* Count helper */}
+        <div style={{ marginBottom: '0.5rem', fontSize: 14, color: '#374151' }}>
+          Showing <strong>{filteredEvents.length}</strong> of {events.length}
+        </div>
 
         {loading ? (
           <p>Loading your events...</p>
-        ) : events.length === 0 ? (
-          <p>No events found.</p>
+        ) : filteredEvents.length === 0 ? (
+          <p>No events found{filter !== 'all' ? ` for "${filter}"` : ''}.</p>
         ) : (
           <div className="my-event-grid">
-            {events.map(event => (
+            {filteredEvents.map(event => (
               <div key={event.id} className="my-event-card">
-                <h4>{event.name}</h4>
-                {event.image_url && <img src={event.image_url} alt={event.name} />}
-                <p><strong>University:</strong> {event.university}</p>
-                <p><strong>Date:</strong> {event.date} | <strong>Time:</strong> {event.time}</p>
-                <p><strong>Status:</strong> {event.status}</p>
+                <div className="my-event-card-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
+                  <h4 style={{ margin: 0 }}>{event.name}</h4>
+
+                  {/* NEW: Status badge */}
+                  <span style={statusBadgeStyle(event.status)}>
+                    {(event.status || 'Unknown').toString().toUpperCase()}
+                  </span>
+                </div>
+
+                {event.image_url && (
+                  <img
+                    src={event.image_url}
+                    alt={event.name}
+                    style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 8, marginTop: 8 }}
+                  />
+                )}
+
+                <p style={{ marginTop: 8 }}>
+                  <strong>University:</strong> {event.university}
+                </p>
+                <p>
+                  <strong>Date:</strong> {event.date} &nbsp;|&nbsp; <strong>Time:</strong> {event.time}
+                </p>
+
+                {/* Keep your existing actions */}
                 <div className="my-event-actions">
                   <button className="delete-btn" onClick={() => handleDelete(event.id)}>🗑 Delete</button>
                 </div>

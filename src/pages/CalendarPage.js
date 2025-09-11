@@ -25,7 +25,7 @@ function CalendarPage() {
             <div
                 className="about-hero"
                 style={{
-                    backgroundColor: '#F39D0C',   // yellow
+                    backgroundColor: '#F39D0C',   // yellow banner
                     height: 140,
                     display: 'flex',
                     alignItems: 'center',

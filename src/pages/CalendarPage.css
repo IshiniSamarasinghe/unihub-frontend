@@ -4,7 +4,16 @@
   text-align: center;
   margin-left: -500px;
 }
-.warning{
+
+/* Add padding inside the calendar */
+.react-calendar {
+  padding: 1rem;            /* space inside */
+  border-radius: 8px;       /* optional rounded corners */
+  box-sizing: border-box;   /* ensures padding doesn’t break layout */
+}
+
+
+.warning {
   font-size: 12px;
 }
 
@@ -14,4 +23,20 @@
     margin-top: 1rem;
     margin-left: -1px;
   }
+}
+
+/* 🔹 Override default today highlight */
+.react-calendar__tile--now {
+  background: #fff !important;              /* white background */
+  border: 2px solid #0C1D36 !important;     /* dark blue border */
+  color: #0C1D36 !important;                /* dark blue text */
+  border-radius: 6px;                       /* rounded look */
+}
+
+/* Keep hover/focus consistent */
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #f1f1f1 !important;
+  border: 2px solid #0C1D36 !important;
+  color: #0C1D36 !important;
 }

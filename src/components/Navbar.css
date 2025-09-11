@@ -116,11 +116,13 @@
 
 }
 
-.icon-btn {
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: white;
+/* Force all navbar icons to be white */
+.icon-btn,
+.icon-btn svg {
+  color: white !important;
+  fill: white !important;
 }
+
 
 .notification-dropdown {
   position: absolute;

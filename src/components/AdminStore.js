@@ -13,6 +13,7 @@ function AdminStore() {
     description: '',
     price: '',
     details: '',
+    end_date: '',       // ✅ Added End Date
     image: null,
   });
 
@@ -57,6 +58,7 @@ function AdminStore() {
       description: item.description,
       price: item.price,
       details: item.details,
+      end_date: item.end_date || '',   // ✅ NEW: set end_date in the form
       image: null,
     });
   };
@@ -78,6 +80,7 @@ function AdminStore() {
     formData.append('description', editForm.description);
     formData.append('price', editForm.price);
     formData.append('details', editForm.details);
+    formData.append('end_date', editForm.end_date || ''); // ✅ NEW: send end_date
     if (editForm.image) {
       formData.append('image', editForm.image);
     }
@@ -113,6 +116,7 @@ function AdminStore() {
               <th>Faculty</th>
               <th>Price</th>
               <th>Details</th>
+              <th>End Date</th> {/* ✅ NEW: Added End Date column */}
               <th>Actions</th>
             </tr>
           </thead>
@@ -132,9 +136,15 @@ function AdminStore() {
                 <td>{item.faculty}</td>
                 <td>{item.price}</td>
                 <td>{item.details}</td>
+                <td>{item.end_date || '-'}</td> {/* ✅ NEW: Display End Date */}
                 <td>
-                  <button className="edit-btn1" onClick={() => openEditModal(item)}><FaEdit /></button>
-                  <button className="delete-btn1" onClick={() => handleDelete(item.id)}><FaTrash /></button>
+                  {/* Black-only icons */}
+                  <button className="icon-btn1" onClick={() => openEditModal(item)} aria-label="Edit" title="Edit">
+                    <FaEdit />
+                  </button>
+                  <button className="icon-btn1" onClick={() => handleDelete(item.id)} aria-label="Delete" title="Delete">
+                    <FaTrash />
+                  </button>
                 </td>
               </tr>
             ))}
@@ -153,6 +163,8 @@ function AdminStore() {
                 <input type="text" name="description" placeholder="Description" value={editForm.description} onChange={handleEditInputChange} required />
                 <input type="text" name="price" placeholder="Price" value={editForm.price} onChange={handleEditInputChange} required />
                 <input type="text" name="details" placeholder="WhatsApp or Contact Details" value={editForm.details} onChange={handleEditInputChange} required />
+                {/* ✅ NEW: End Date */}
+                <input type="date" name="end_date" value={editForm.end_date} onChange={handleEditInputChange} />
                 <input type="file" name="image" accept=".jpg,.jpeg,.png" onChange={handleEditInputChange} />
                 <button type="submit">Update Item</button>
               </form>

@@ -58,28 +58,46 @@
   color: #111827;
 }
 
-/* Action buttons */
-.society-management .edit-btn2,
-.society-management .delete-btn2 {
+/* ==============================
+   Action icons (SS3-style, black)
+   ============================== */
+.society-management .icon-btn2 {
+  background: none;
   border: none;
   cursor: pointer;
-  font-size: 12px;
-  padding: 8px 10px;
-  margin-right: 6px;
-  border-radius: 6px;
+  font-size: 16px;        /* icon size */
+  margin-right: 8px;
+  color: #000;            /* black by default */
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: #fff;
-  transition: background-color 0.2s ease, transform 0.05s ease;
+  justify-content: center;
+  line-height: 1;
+  transition: color 0.2s ease;
 }
 
-.society-management .edit-btn2 { background-color: #f0ad4e; }
-.society-management .edit-btn2:hover { background-color: #c4893f; }
-.society-management .delete-btn2 { background-color: #d9534f; }
-.society-management .delete-btn2:hover { background-color: #b64542; }
-.society-management .edit-btn2:active,
-.society-management .delete-btn2:active { transform: translateY(1px); }
+.society-management .icon-btn2:hover {
+  color: #444;            /* subtle hover */
+}
+
+.society-management .icon-btn2:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* (Optional) keep legacy classes harmless if they appear anywhere */
+.society-management .edit-btn2,
+.society-management .delete-btn2 {
+  background: none !important;
+  border: none !important;
+  color: #000 !important;
+  padding: 0 !important;
+  margin-right: 8px !important;
+  font-size: 16px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Modal */
 .society-management .modal-backdrop {
