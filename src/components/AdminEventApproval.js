@@ -12,57 +12,68 @@ function AdminEventApproval() {
   const [editEvent, setEditEvent] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const fetchEvents = () => {
-    setLoading(true);
-    axios.get('/events/pending')
-      .then(res => {
-        const data = Array.isArray(res.data)
-          ? res.data
-          : Array.isArray(res.data.events)
-          ? res.data.events
-          : [];
-        setEvents(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('❌ Error fetching events:', err);
-        setLoading(false);
-      });
-  };
+  // Fetch events from the server
+const fetchEvents = () => {
+  setLoading(true);
+  axios.get('/events/pending')
+    .then(res => {
+      console.log('Pending events:', res.data);  // Log the response to check its structure
 
+      // Check if the data contains events inside 'data'
+      const eventsData = Array.isArray(res.data.data) ? res.data.data : [];
+      setEvents(eventsData); // Set the events from the 'data' property
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('❌ Error fetching events:', err);
+      if (err.response && err.response.status === 401) {
+        // Redirect to login if unauthorized
+        alert('You are not authorized. Please log in again.');
+        window.location.href = '/login'; // Adjust URL as needed
+      }
+      setLoading(false);
+    });
+};
+
+  // Fetch events when the component mounts
   useEffect(() => {
     fetchEvents();
   }, []);
 
+  // Toggle the description's visibility
   const toggleDescription = (id) => {
     setExpandedDesc(prev => (prev === id ? null : id));
   };
 
+  // Open the edit modal for a selected event
   const openEditModal = (event) => {
     setEditEvent(event);
     setShowEditModal(true);
   };
 
+  // Handle input change for editing event details
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditEvent({ ...editEvent, [name]: value });
   };
 
+  // Update the event
   const handleUpdate = async () => {
     try {
       await axios.put(`/events/${editEvent.id}`, editEvent);
       setShowEditModal(false);
-      fetchEvents();
+      fetchEvents(); // Refresh events after update
     } catch (err) {
       console.error('Failed to update event:', err);
     }
   };
 
+  // Handle deleting an event
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this event?')) return;
     try {
       await axios.delete(`/events/${id}`);
-      setEvents(events.filter(event => event.id !== id));
+      setEvents(events.filter(event => event.id !== id)); // Remove deleted event from state
     } catch (err) {
       console.error('Failed to delete event:', err);
     }
@@ -141,7 +152,7 @@ function AdminEventApproval() {
                       <FaEye
                         title="View"
                         style={{ cursor: 'pointer', marginRight: '10px' }}
-                        onClick={() => window.open(`/events`, '_blank')}
+                        onClick={() => window.open(`/events/${event.id}`, '_blank')}
                       />
                       <FaEdit
                         title="Edit"
@@ -161,6 +172,7 @@ function AdminEventApproval() {
           </div>
         )}
 
+        {/* Edit Event Modal */}
         {showEditModal && (
           <div className="modal-overlay">
             <div className="modal">

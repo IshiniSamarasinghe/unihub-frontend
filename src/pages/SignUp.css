@@ -1,193 +1,196 @@
-/* Apply Poppins to everything in the sign-up section */
+/* Container */
 .signup-container {
-    display: flex;
-    min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Left pane */
 .signup-left {
-    flex: 1;
-    background-color: #0C1D36;
-    color: #fff;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  flex: 1;
+  background-color: #0C1D36;
+  color: #fff;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
-
 .signup-logo {
   width: 160px;
   height: auto;
   margin-bottom: 1rem;
-  margin-left: -20px;        /* Adjust left spacing if needed */
+  margin-left: -20px;
   object-fit: contain;
   margin-top: -230px;
 }
-
-.signup-left .welcome-text {
-    margin-top: -20px;
-    font-size: 14px;
-    max-width: 400px;
+.welcome-text {
+  margin-top: -20px;
+  font-size: 14px;
+  max-width: 400px;
 }
-
 .signup-illustration {
-    margin-top: 10px;
-    width: 80%;
-    max-width: 300px;
-    margin-left: 40px;
-
+  margin-top: 10px;
+  width: 80%;
+  max-width: 300px;
+  margin-left: 40px;
 }
 
+/* Right pane */
 .signup-right {
-    flex: 1;
-    padding: 4rem;
-    background-color: #fff;
-    margin-top: -50px;
+  flex: 1;
+  padding: 4rem;
+  background-color: #fff;
+  margin-top: -50px;
 }
 
+/* Form controls */
 .signup-form input,
 .signup-form select {
-    display: block;
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.signup-btn {
-    background-color: #FFA60C;
-    color: #000000;
-    padding: 0.9rem;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
+/* Eye icon pattern (same as SignIn) */
+.input-with-icon {
+  position: relative;
+}
+.input-with-icon input {
+  padding-right: 2.5rem;
+}
+.eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+  color: #222;
 }
 
-.signup-btn:hover {
-    background-color: #0C1D36;
-    color: #ffffff;
-    transition: 0.3s;
-    border: 1px solid black;
-}
-
+/* Role pair row */
 .role-pair {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
+/* Add role button */
 .add-role {
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid black;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    margin-bottom: 1.5rem;
-    font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
 }
 
-.terms {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-    margin-left: -500px;
+/* ✅ Terms row: identical alignment style to SignIn remember-me */
+.terms-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 0.25rem 0 0.75rem 0;
+}
+.terms-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: #0C1D36;
+}
+.terms-check span {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-top: 1px;
+  color: #000;
 }
 
-.box {
-    margin-right: -490px;
-    margin-top: 1rem;
+/* Submit */
+.signup-btn {
+  background-color: #FFA60C;
+  color: #000000;
+  padding: 0.9rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+.signup-btn:hover {
+  background-color: #0C1D36;
+  color: #ffffff;
+  border: 1px solid #000;
 }
 
-.terms-text {
-    text-align: left;
-    font-size: 10px;
-    color: #000000;
-    font-family: 'Poppins', sans-serif;
+/* Footer link */
+.have-account {
+  margin-top: 1rem;
+  font-size: 12px;
+  text-align: center;
+}
+.linklike {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
 }
 
+/* 📱 Mobile */
 @media (max-width: 768px) {
-    .signup-container {
-        flex-direction: column;
-        padding: 1rem;
-        
-    }
+  .signup-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .signup-left {
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+  .signup-illustration {
+    max-width: 250px;
+    margin-left: 0;
+  }
+  .signup-right {
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+  .role-pair {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .signup-form input,
+  .signup-form select {
+    padding: 0.7rem;
+    font-size: 14px;
+  }
+  .signup-btn {
+    padding: 0.8rem;
+    font-size: 15px;
+  }
 
-    .signup-left {
-        align-items: center;
-        text-align: center;
-        padding: 2rem 1rem;
-        margin-top: 0;
-         
-        
-    }
-
-    .signup-left .logo {
-        margin-top: 0;
-        font-size: 1.8rem;
-    }
-
-    .signup-left .welcome-text {
-        font-size: 16px;
-        margin-top: 1rem;
-        max-width: 100%;
-    }
-
-    .signup-illustration {
-        max-width: 250px;
-        margin-left: 0;
-        
-    }
-
-    .signup-right {
-        padding: 2rem 1rem;
-        margin-top: 0;
-    }
-
-    .role-pair {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .signup-form input,
-    .signup-form select {
-        padding: 0.7rem;
-        font-size: 14px;
-    }
-
-    .signup-btn {
-        padding: 0.8rem;
-        font-size: 15px;
-    }
-
-    .add-role {
-        font-size: 14px;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .terms {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-         
-   
-    }
-
-    .box {
-        margin-left: 50px;
-         
-    }
-
-
-    .terms-text {
-        font-size: 12px;
-        margin-left: 40px;
-    }
+  /* keep checkbox + text nicely aligned on mobile too */
+  .terms-check {
+    gap: 8px;
+    font-size: 10px;
+  }
 }

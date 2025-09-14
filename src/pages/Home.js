@@ -9,6 +9,10 @@ import EventGrid from '../components/EventGrid';
 import EventPromo from '../components/EventPromo';
 import axios from '../axios';
 import HoverSidebar from '../components/HoverSidebar';
+import BackToTop from "../components/BackToTop";
+
+const PER_PAGE = 12; // how many to fetch per request
+const FALLBACK_IMG = '/react/assets/events/default.jpg';
 
 function Home() {
   const [allEvents, setAllEvents] = useState([]);
@@ -16,73 +20,119 @@ function Home() {
   const [filters, setFilters] = useState({ university: '', faculty: '', society: '' });
   const [searchQuery, setSearchQuery] = useState('');
 
-  // ✅ Load all approved events
-  useEffect(() => {
-    axios.get('/events/approved')
-      .then(response => {
-        console.log("✅ Raw event data from backend:", response.data);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [initialized, setInitialized] = useState(false);
+  const [error, setError] = useState(null);
 
-     const formatted = response.data.map(event => {
-  const trimmedEvent = {
+  // Map backend event -> card props we use
+  const mapEvent = (event) => ({
     id: event.id,
-    image: event.image_url || '/react/assets/events/default.jpg',
+    image: event.image_url || FALLBACK_IMG,
     title: event.name || '',
-    university: event.university?.trim() || '',
-    faculty: event.faculty?.trim() || '',
-    society: event.society?.trim() || '',
+    university: (event.university || '').trim(),
+    faculty: (event.faculty || '').trim(),
+    society: (event.society || '').trim(),
+  });
+
+  // Fetch events (paginated). Falls back gracefully if backend returns an array.
+  const fetchEvents = async (p = 1) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await axios.get('/events/all', { params: { per_page: PER_PAGE, page: p } });
+      const raw = res.data;
+
+      // Support Laravel paginator or plain array
+      let data = [];
+      let current = p;
+      let last = p;
+
+      if (raw && Array.isArray(raw.data)) {
+        data = raw.data;
+        current = raw.current_page ?? p;
+        last = raw.last_page ?? p;
+      } else if (Array.isArray(raw)) {
+        data = raw;
+      }
+
+      const formatted = data.map(mapEvent);
+
+      // Build the next allEvents list
+      const nextAll = p === 1 ? formatted : [...allEvents, ...formatted];
+
+      setAllEvents(nextAll);
+      // Re-apply filters/search on the combined list
+      applyAllFiltersInternal(nextAll, filters, searchQuery);
+
+      setPage(current);
+      setLastPage(last);
+    } catch (e) {
+      console.error('Events load error:', e);
+      setError('Failed to load events.');
+    } finally {
+      setLoading(false);
+      setInitialized(true);
+    }
   };
 
-  console.log(`📌 Event: ${trimmedEvent.title}, University: [${trimmedEvent.university}], Faculty: [${trimmedEvent.faculty}], Society: [${trimmedEvent.society}]`);
-  return trimmedEvent;
-});
-
-        setAllEvents(formatted);
-        setFilteredEvents(formatted);
-      })
-      .catch(error => {
-        console.error('❌ Error loading events:', error);
-      });
+  useEffect(() => {
+    fetchEvents(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ✅ Filtering function with all combinations
-  const applyAllFilters = (activeFilters, search) => {
-    const filtered = allEvents.filter((event) => {
-      const eventUniversity = event.university.toLowerCase().trim();
-      const eventFaculty = event.faculty.toLowerCase().trim();
-      const eventSociety = event.society.toLowerCase().trim();
+  // Core filter function (pure)
+  const filterList = (list, activeFilters, search) => {
+    const fUni = activeFilters.university.toLowerCase().trim();
+    const fFac = activeFilters.faculty.toLowerCase().trim();
+    const fSoc = activeFilters.society.toLowerCase().trim();
+    const fSearch = search.toLowerCase().trim();
 
-      const filterUniversity = activeFilters.university.toLowerCase().trim();
-      const filterFaculty = activeFilters.faculty.toLowerCase().trim();
-      const filterSociety = activeFilters.society.toLowerCase().trim();
+    return list.filter((event) => {
+      const eUni = event.university.toLowerCase().trim();
+      const eFac = event.faculty.toLowerCase().trim();
+      const eSoc = event.society.toLowerCase().trim();
 
-      const matchesUniversity = !filterUniversity || eventUniversity === filterUniversity;
-      const matchesFaculty = !filterFaculty || eventFaculty === filterFaculty;
-      const matchesSociety = !filterSociety || eventSociety === filterSociety;
-      const matchesSearch = !search || event.title.toLowerCase().includes(search.toLowerCase());
+      const matchesUniversity = !fUni || eUni === fUni;
+      const matchesFaculty = !fFac || eFac === fFac;
+      const matchesSociety = !fSoc || eSoc === fSoc;
+      const matchesSearch = !fSearch || event.title.toLowerCase().includes(fSearch);
 
       return matchesUniversity && matchesFaculty && matchesSociety && matchesSearch;
     });
-
-    setFilteredEvents(filtered);
   };
 
-  // ✅ When user changes dropdowns
+  // Apply filters to a given base list
+  const applyAllFiltersInternal = (baseList, activeFilters, search) => {
+    setFilteredEvents(filterList(baseList, activeFilters, search));
+  };
+
+  // When user changes dropdowns
   const handleFilter = (filterValues) => {
     setFilters(filterValues);
-    applyAllFilters(filterValues, searchQuery);
+    applyAllFiltersInternal(allEvents, filterValues, searchQuery);
   };
 
-  // ✅ When user uses search bar
+  // When user searches
   const handleSearch = (query) => {
     setSearchQuery(query);
-    applyAllFilters(filters, query);
+    applyAllFiltersInternal(allEvents, filters, query);
   };
 
-  // ✅ Reset all filters
+  // Reset all filters
   const handleClear = () => {
-    setFilters({ university: '', faculty: '', society: '' });
+    const cleared = { university: '', faculty: '', society: '' };
+    setFilters(cleared);
     setSearchQuery('');
-    setFilteredEvents(allEvents);
+    applyAllFiltersInternal(allEvents, cleared, '');
+  };
+
+  // Load next page
+  const handleLoadMore = () => {
+    if (!loading && page < lastPage) {
+      fetchEvents(page + 1);
+    }
   };
 
   return (
@@ -92,12 +142,48 @@ function Home() {
       <UniversityLogos />
       <FilterSection onFilter={handleFilter} onClear={handleClear} />
       <SearchBar onSearch={handleSearch} />
-      {filteredEvents.length > 0 ? (
-        <EventGrid events={filteredEvents} />
-      ) : (
-        <p style={{ textAlign: 'center', padding: '2rem', fontWeight: 500 }}>No matching events found.</p>
+
+      {!initialized && (
+        <p style={{ textAlign: 'center', padding: '2rem', fontWeight: 500 }}>Loading events…</p>
       )}
+
+      {error && (
+        <p style={{ textAlign: 'center', padding: '2rem', color: 'crimson', fontWeight: 500 }}>{error}</p>
+      )}
+
+      {!error && initialized && (
+        <>
+          {filteredEvents.length > 0 ? (
+            <EventGrid events={filteredEvents} />
+          ) : (
+            <p style={{ textAlign: 'center', padding: '2rem', fontWeight: 500 }}>
+              No matching events found.
+            </p>
+          )}
+
+          {/* Load More */}
+          <div style={{ textAlign: 'center', margin: '1.5rem 0 2.5rem' }}>
+            {page < lastPage ? (
+              <button
+                className="btn btn-outline-primary"
+                onClick={handleLoadMore}
+                disabled={loading}
+              >
+                {loading ? 'Loading…' : 'Load More'}
+              </button>
+            ) : (
+              filteredEvents.length > 0 && (
+                <span className="text-muted" style={{ fontSize: 13 }}>
+                  You’ve reached the end.
+                </span>
+              )
+            )}
+          </div>
+        </>
+      )}
+
       <EventPromo />
+       <BackToTop />
     </>
   );
 }

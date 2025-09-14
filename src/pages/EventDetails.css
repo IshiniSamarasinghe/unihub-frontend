@@ -1,10 +1,11 @@
-/* EventDetails.css */
-
+/* General Event Details Hero */
 .event-details-hero {
   margin-top: 0;
   padding-top: 0;
+  text-align: center; /* Center the content horizontally */
 }
 
+/* Event Header Styling */
 .event-details-hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
@@ -12,42 +13,50 @@
   padding-left: 3rem;
 }
 
+/* Event Image Container Styling */
+.event-image-container {
+  position: relative;
+  display: block;
+  margin: 0 auto; /* Center the image container */
+  text-align: center;
+  width: 500px;
+  height: 500px;
+}
 
-.event-details-hero img {
+.hero-image {
   width: 80%;
   max-width: 600px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   margin-bottom: 3rem;
-  margin-left: 30px;
 }
 
 /* 2-Column Detail Grid */
 .event-details-grid {
   max-width: 800px;
   margin: 2rem auto;
-  padding: 0 5rem;
+  padding: 0 2rem; /* Adjust padding to fit within container */
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  /* align to the left */
-  margin-left: 350px;
-
+  align-items: left; /* Center align the grid items */
+  margin-left: 550px;
 }
 
 .event-details-grid p {
   margin: 0.6rem 0;
   line-height: 1.5;
+  text-align: left; /* Keep the content left aligned */
 }
 
 .event-details-grid strong {
   display: inline-block;
   width: 130px;
-  /* Aligns labels neatly */
+  /* Align labels neatly */
 }
 
+/* Flexboxes for Left/Right Sections */
 .left,
 .right {
   flex: 1;
@@ -68,6 +77,7 @@
   margin-right: 0.5rem;
 }
 
+/* Header and Image Container Layout */
 .event-header {
   display: flex;
   justify-content: space-between;
@@ -75,29 +85,22 @@
   margin-bottom: 40px;
 }
 
-.event-image-container {
-  position: relative;
-  display: inline-block;
-  margin-left: 320px;
-}
-
+/* Dropdown Menu for More Options */
 .more-menu-container {
   position: absolute;
   top: 14px;
   right: 115px;
   z-index: 10;
-
 }
 
 .more-icon {
   font-size: 1.5rem;
-  color: white;
+  color: rgb(255, 255, 255);
   border-radius: 50%;
   padding: 6px;
   cursor: pointer;
-
+  margin-right: -80px;
 }
-
 
 .dropdown-menu {
   position: absolute;
@@ -118,44 +121,31 @@
   cursor: pointer;
 }
 
-/* Adds spacing between slider and footer */
+/* Styling for Slider Section */
 .slider-section {
   margin-bottom: 4rem;
   background-color: transparent;
   margin-top: 4rem;
 }
 
+/* Card Style (if you want event cards) */
 .event-card {
   background-color: #fff;
-  /* keep this only if you want a card-like look */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  /* soft shadow */
   border-radius: 8px;
 }
 
-.slider-heading {
-  margin-bottom: 3rem;
-}
-
+/* Responsive Design for Large Screens (1024px and below) */
 @media (max-width: 1024px) {
-  .more-menu-container {
-    position: absolute;
-    top: 12px;
-    left: 300px;
-    z-index: 10;
-
-  }
-
   .event-details-hero img {
-    width: 40%;
+    width: 50%;
     max-width: 300px;
   }
 
   .event-details-grid {
-    padding: 0 2rem;
+    padding: 0 1rem;
     margin-left: auto;
     margin-right: auto;
-
   }
 
   .event-image-container {
@@ -163,7 +153,6 @@
     margin-right: auto;
     display: block;
     text-align: center;
-
   }
 
   .more-menu-container {
@@ -171,22 +160,20 @@
   }
 }
 
+/* Responsive Design for Medium Screens (768px and below) */
 @media (max-width: 768px) {
   .event-details-hero h1 {
     font-size: 18px;
-    padding-left: 0.1px;
   }
 
   .event-details-grid {
     padding: 0 1rem;
-    margin: 1.5rem auto;
     font-size: 12px;
-    margin-left: 50px;
-
+    margin-left: 0;
   }
 
   .event-image-container img {
-    width: 95%;
+    width: 100%;
   }
 
   .more-menu-container {
@@ -199,6 +186,7 @@
   }
 }
 
+/* Responsive Design for Small Screens (480px and below) */
 @media (max-width: 480px) {
   .event-details-hero h1 {
     font-size: 1.3rem;

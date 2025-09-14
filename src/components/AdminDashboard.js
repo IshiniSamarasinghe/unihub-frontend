@@ -1,4 +1,3 @@
-// src/components/AdminDashboard.js
 import React, { useEffect, useState } from 'react';
 import { FaClipboardList, FaClock, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -17,16 +16,25 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch the dashboard metrics
     axios.get('/dashboard-metrics')
       .then(res => {
         setDashboardStats(res.data);
       })
       .catch(err => console.error('Failed to load dashboard stats', err));
 
+    // Fetch the recent events
     axios.get('/events/all')
       .then(res => {
-        const latestFive = res.data.slice(0, 5);
-        setRecentEvents(latestFive);
+        console.log('Response Data:', res.data); // Log to inspect the structure of the response
+
+        // If the data is an object with a 'data' property containing an array of events
+        if (res.data && Array.isArray(res.data.data)) {
+          const latestFive = res.data.data.slice(0, 5);
+          setRecentEvents(latestFive);
+        } else {
+          console.error('Expected an array of events, but got:', res.data);
+        }
       })
       .catch(err => console.error('Failed to load recent events', err));
   }, []);

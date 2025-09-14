@@ -6,7 +6,7 @@
   font-size: 10px;
 }
 
-.topic{
+.topic {
   font-size: 12px;
 }
 
@@ -80,10 +80,10 @@
 }
 
 /* ===========================
-   ACTION ICONS: SS3 STYLE
+   ACTION ICONS
    =========================== */
 
-/* Base icon button reset */
+/* Base reset for icon buttons */
 .icon-btn {
   background: none !important;
   border: none !important;
@@ -95,43 +95,55 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
-  color: #000 !important;       /* make the icon black */
-  font-size: 16px;              /* icon size */
+  font-size: 16px; /* icon size */
 }
 
-/* Extra specificity to beat older rules */
+/* Force edit/delete buttons to be always visible */
+.events-table td .icon-btn,
 .events-table td .edit-btn1,
 .events-table td .delete-btn1 {
-  background: transparent !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  background: #000 !important;   /* black background */
+  color: #fff !important;        /* white icon */
   border: none !important;
-  box-shadow: none !important;
-  color: #000 !important;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Hover: subtle gray */
-.icon-btn:hover,
+/* Hover effect: light black */
+.events-table td .icon-btn:hover,
 .events-table td .edit-btn1:hover,
 .events-table td .delete-btn1:hover {
-  color: #444 !important;
-}
-
-/* Keep the 'Update/Cancel' modal buttons styled (not affected by icon reset) */
-.modal-actions .edit-btn1,
-.modal-actions .delete-btn1 {
-  background: #111827 !important;
+  background: #444 !important;
   color: #fff !important;
-  border-radius: 6px !important;
-  padding: 8px 14px !important;
-  font-size: 12px !important;
 }
 
-/* ===== Modal (unchanged from your setup) ===== */
+/* Make sure react-icons inherit color */
+.events-table td .icon-btn svg {
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+}
 
+/* Neutralize any row-hover hiding */
+.events-table tr:hover td .icon-btn,
+.events-table tr:hover td .edit-btn1,
+.events-table tr:hover td .delete-btn1 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ===== Modal (unchanged) ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +155,7 @@
   max-width: 92%;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
 }
 .modal h3 {
   margin: 0 0 12px 0;
@@ -163,4 +175,12 @@
   justify-content: flex-end;
   gap: 10px;
   margin-top: 8px;
+}
+.modal-actions .edit-btn1,
+.modal-actions .delete-btn1 {
+  background: #111827 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  padding: 8px 14px !important;
+  font-size: 12px !important;
 }

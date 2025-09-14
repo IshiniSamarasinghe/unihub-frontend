@@ -1,7 +1,15 @@
-// src/pages/MyEvents.js (updated)
+// src/pages/MyEvents.js (fixed)
 import React, { useEffect, useState } from 'react';
 import axios from '../axios';
 import './MyEvents.css';
+
+// ✅ Normalize whatever the API returns into a plain array
+const toArray = (x) =>
+  Array.isArray(x) ? x
+  : Array.isArray(x?.data) ? x.data
+  : Array.isArray(x?.events) ? x.events
+  : Array.isArray(x?.data?.data) ? x.data.data   // paginator shape
+  : [];
 
 function MyEvents() {
   const [events, setEvents] = useState([]);
@@ -29,10 +37,11 @@ function MyEvents() {
   const fetchMyEvents = async () => {
     try {
       const res = await axios.get('/events/mine');
-      setEvents(res.data);
+      setEvents(toArray(res?.data));              // <-- ensure it's an array
     } catch (err) {
       console.error('❌ Failed to load events:', err);
       alert('Error loading your events.');
+      setEvents([]);                               // keep it an array on error
     } finally {
       setLoading(false);
     }
@@ -44,7 +53,7 @@ function MyEvents() {
 
     try {
       await axios.delete(`/events/${id}`);
-      setEvents(prev => prev.filter(event => event.id !== id));
+      setEvents(prev => (Array.isArray(prev) ? prev.filter(event => event.id !== id) : prev));
     } catch (err) {
       console.error('❌ Delete failed:', err);
       alert('Failed to delete event.');
@@ -68,8 +77,11 @@ function MyEvents() {
     return { ...base, background: '#eef2f7', color: '#334155', border: '1px solid #d5dbe3' }; // fallback/unknown
   };
 
+  // ✅ Always operate on an array
+  const eventsArr = Array.isArray(events) ? events : [];
+
   // 🔹 Simple client-side filter (no backend changes)
-  const filteredEvents = events.filter(ev => {
+  const filteredEvents = eventsArr.filter(ev => {
     if (filter === 'all') return true;
     return String(ev.status || '').toLowerCase() === filter;
   });
@@ -150,7 +162,7 @@ function MyEvents() {
       </div>
 
       <div className="my-events-container">
-        {/* NEW: Status Filter Tabs */}
+        {/* Status Filter Tabs */}
         <div className="my-events-tabs" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
           {['all', 'approved', 'pending', 'rejected'].map(key => (
             <button
@@ -176,7 +188,7 @@ function MyEvents() {
 
         {/* Count helper */}
         <div style={{ marginBottom: '0.5rem', fontSize: 14, color: '#374151' }}>
-          Showing <strong>{filteredEvents.length}</strong> of {events.length}
+          Showing <strong>{filteredEvents.length}</strong> of {eventsArr.length}
         </div>
 
         {loading ? (
@@ -190,7 +202,7 @@ function MyEvents() {
                 <div className="my-event-card-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
                   <h4 style={{ margin: 0 }}>{event.name}</h4>
 
-                  {/* NEW: Status badge */}
+                  {/* Status badge */}
                   <span style={statusBadgeStyle(event.status)}>
                     {(event.status || 'Unknown').toString().toUpperCase()}
                   </span>
@@ -211,7 +223,7 @@ function MyEvents() {
                   <strong>Date:</strong> {event.date} &nbsp;|&nbsp; <strong>Time:</strong> {event.time}
                 </p>
 
-                {/* Keep your existing actions */}
+                {/* Actions */}
                 <div className="my-event-actions">
                   <button className="delete-btn" onClick={() => handleDelete(event.id)}>🗑 Delete</button>
                 </div>
@@ -225,3 +237,4 @@ function MyEvents() {
 }
 
 export default MyEvents;
+

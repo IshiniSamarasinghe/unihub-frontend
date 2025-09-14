@@ -1,0 +1,35 @@
+.back-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 52px;
+  height: 52px;
+  background: #0C1D36;          /* blue square like your screenshot */
+  color: #fff;
+  border: none;
+  border-radius: 4px;            /* make 0 if you want a perfect square */
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  cursor: pointer;
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid #ffb703;   /* accessible focus ring */
+  outline-offset: 2px;
+}
+
+.back-to-top:hover { filter: brightness(1.05); }
+.back-to-top:active { transform: translateY(1px); }
