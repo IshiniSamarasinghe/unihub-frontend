@@ -1,11 +1,13 @@
 // src/components/AdminLayout.js
 import React, { useEffect, useState } from 'react';
-import { FaClipboardList, FaClock, FaUsers, FaSignOutAlt, FaLock } from 'react-icons/fa';
+import { FaClipboardList, FaClock, FaUsers, FaSignOutAlt, FaLock, FaUniversity } from 'react-icons/fa';
+
 import { Link, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
 import { FaStore } from 'react-icons/fa';
 import { FaTimesCircle } from "react-icons/fa";
 import axios from '../axios'; // ✅ added
+
 
 function AdminLayout({ children, activePage }) {
   const location = useLocation();
@@ -79,6 +81,12 @@ function AdminLayout({ children, activePage }) {
           <Link to="/admin/store" className={`menu-item ${activePage === 'store' ? 'active' : ''}`}>
             <FaStore /> Store
           </Link>
+          {/* Societies */}
+          <a href="/admin/societies-list"
+            className={`menu-item ${window.location.pathname === "/admin/societies-list" ? "active" : ""}`}>
+            <FaUniversity /> Societies
+          </a>
+
           <Link to="/admin/change-password" className={`menu-item ${location.pathname === "/admin/change-password" ? "active" : ""}`}>
             <FaLock /> Change Password
           </Link>
@@ -97,7 +105,7 @@ function AdminLayout({ children, activePage }) {
       <main className="admin-main">
         {children}
       </main>
-    </div>
+    </div >
   );
 }
 

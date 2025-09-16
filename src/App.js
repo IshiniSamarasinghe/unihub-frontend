@@ -14,7 +14,8 @@ import CalendarPage from './pages/CalendarPage';
 import MyEvents from './pages/MyEvents';
 import TopSlider from './components/TopSlider';
 import './App.css';
- 
+import JoinSocietiesPage from "./pages/JoinSocietiesPage";
+import SocietiesList from './pages/admin/SocietiesList';
  
 
 import { useEffect } from 'react';
@@ -117,6 +118,7 @@ function App() {
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/test-notification" element={<TestNotification />} />
           <Route path="/my-events" element={<MyEvents />} />
+          <Route path="/societies" element={<JoinSocietiesPage />} />
          
 
           {/* Admin pages */}
@@ -130,6 +132,7 @@ function App() {
           <Route path="/admin/change-password" element={<AdminChangePassword />} />
           <Route path="/admin/store" element={<AdminStore />} />
           <Route path="/admin/register" element={<AdminSignUp />} />
+          <Route path="/admin/societies-list" element={<SocietiesList />} />
         </Routes>
       </LayoutWrapper>
     </BrowserRouter>

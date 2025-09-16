@@ -11,6 +11,9 @@ import axios from '../axios';
 import HoverSidebar from '../components/HoverSidebar';
 import BackToTop from "../components/BackToTop";
 
+// ✅ NEW: join-societies hero section
+import JoinSocietiesHero from "../components/JoinSocietiesHero";
+
 const PER_PAGE = 12; // how many to fetch per request
 const FALLBACK_IMG = '/react/assets/events/default.jpg';
 
@@ -182,8 +185,16 @@ function Home() {
         </>
       )}
 
+      {/* ✅ New: Join Societies hero banner (kept simple & configurable) */}
+      <JoinSocietiesHero
+        title="READY TO START YOUR JOURNEY WITH US?"
+        description="Lead a project, learn new skills, or simply find your crowd. Browse the societies below and register today to start your exciting chapter in university life."
+        ctaText="Click Here"
+        href="/societies#register"
+      />
+
       <EventPromo />
-       <BackToTop />
+      <BackToTop />
     </>
   );
 }
